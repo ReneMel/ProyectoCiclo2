@@ -1,6 +1,8 @@
 // Tablero manera manual 
 #include <iostream>
 #include <stdlib.h>
+#include <cmath>
+#include <string>
 
 using namespace std;
 
