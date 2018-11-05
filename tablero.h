@@ -1,6 +1,3 @@
-#ifndef tablero_H
-#define tablero_H
-
 #include <cstdlib>
 #include <iostream>
 
@@ -157,9 +154,3 @@ void Tablero::llenar(){
 	}
 }
 
-int main(int argc, char const *argv[])
-{
-	Tablero hola;
-	hola.llenar();
-	return 0;
-}
