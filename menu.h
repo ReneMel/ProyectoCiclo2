@@ -6,10 +6,36 @@
 using namespace std;
 using namespace cv;
 
+struct Jugador
+{
+	string name[200];
+	string aka[200];
+	int win[200];
+}player;
+
 string J1nombre,J2nombre,J1alias,J2alias;
 char aux;
 int m=1;
 bool cerrar = false; 
+int temp1;
+string tempN,Njugador,Ajugador;
+string tempA;
+int posicion;
+String diez[10];
+//bool cerrar =false;
+bool endgame=false;
+bool orden=false;
+bool turn=false;
+
+void llenar(){
+	for (int i =0; i<200; i++){
+		player.win[i]=0;
+		player.name[i]= "";
+		player.aka[i]= "";
+	}              
+}
+
+void Menu();
 
 
 //Scalar negro(0, 0, 0);
@@ -24,6 +50,117 @@ Mat Ins(400,400, CV_8UC3, Scalar(204,204,255));
 Mat Top(400,400, CV_8UC3, negro);
 void Top10();
 
+void leerDatos(){
+	int pt, r=0;
+	char c[5];
+	string score;
+	ifstream Datos("Datos.txt");
+	while(!Datos.eof()){
+		getline(Datos,score);
+		diez[r]=score;
+		r++;
+		if(score.length()>=12) {
+			//cout<<score<<endl;	
+			
+			for (int i=0; i<5;i++){
+				Njugador+=score.at(i);
+			}
+			for (int i=6; i<11;i++){
+				Ajugador+=score.at(i);
+			}
+			for (int i=12; i<score.length();i++){
+				c[i-12]=score.at(i);
+				pt=atoi(c);
+			}
+				for (int i =0; i<200;i++){ 
+
+					if (player.name[i].length()==0){
+						player.name[i]=Njugador;
+						player.aka[i]=Ajugador;
+						player.win[i]=pt;
+						//cout <<player.win[i]<<endl;cout <<player.aka[i]<<endl;cout <<player.name[i]<<endl;
+						Njugador="";
+						Ajugador="";
+						
+						break;
+					}
+				}
+		}
+	}
+}
+void datostxt(){
+	int n=0;
+	//MostratTop():
+	ofstream Datos ("Datos.txt");
+	for (int i=0; i<200; i++){
+		if (player.name[i].length()!=0){
+			ostringstream os;
+			os<<player.win[n];
+		
+			Datos<<player.name[n]+"|"<<player.aka[n]+"|"<<os.str()+"\r\n";
+			n++;}
+
+	}
+	orden=false;
+	//Nombre|AKA|puntaje
+	Datos.close();
+}
+
+
+void ordenTop(){
+
+
+	for (int i=0; i<=200; i++){
+		for (int j=0; j<=199; j++){
+			if (player.win[j]<player.win[j+1]){
+			//ESTE CODIGO ES PARA ORDENAR EL WINS
+				temp1=player.win[j];
+				player.win[j]=player.win[j+1];
+				player.win[j+1]=temp1;
+			//ORDENAR EL NOMBRE
+				tempN=player.name[j];
+				player.name[j]=player.name[j+1];
+				player.name[j+1]=tempN;
+			// ORDENAR EL ALIAS
+				tempA=player.aka[j];
+				player.aka[j]=player.aka[j+1];
+				player.aka[j+1]=tempA;
+		}
+	}
+	}
+	orden=true;
+	if (orden){
+	datostxt();}
+}
+
+void llenarname(){
+	string apodo="",namae="";
+	if(turn){
+		namae=J1nombre;
+		apodo=J1alias;
+	}
+	else{
+		namae=J2nombre;
+		apodo=J2alias;
+	}
+
+	for(int i =0; i<200;i++){
+		if (player.name[i]==namae && player.aka[i]==apodo){
+			player.win[i]++;
+			//cout<<player.win[i];
+			ordenTop();
+			break;
+		}
+		else if (player.name[i]==""){
+				player.name[i]=namae;
+				player.aka[i]=apodo;
+				player.win[i]++;
+				ordenTop();
+				break;
+		}
+	}
+	
+}
 
 
 
@@ -41,19 +178,19 @@ void DibujarTop(){
 
 	int y=95;
 	for (int i=0; i<11; i++){
-		//if (player.name[i].length()>=0){
-		//	ostringstream os;
-		//	os<<player.win[i];
-		//putText(Top, player.aka[i], Point(90,y),FONT_HERSHEY_PLAIN, 1.1, blanco);
-		//putText(Top, os.str()+" pts.", Point(230,y), FONT_HERSHEY_PLAIN, 1.1, blanco);
+		if (player.name[i].length()>=0){
+			ostringstream os;
+			os<<player.win[i];
+		putText(Top, player.aka[i], Point(90,y),FONT_HERSHEY_PLAIN, 1.1, blanco);
+		putText(Top, os.str()+" pts.", Point(230,y), FONT_HERSHEY_PLAIN, 1.1, blanco);
 		y+=25;
-	//}	
+	}	
 	}
 	int y2=95;
 	for (int i=0; i<10; i++){
-		//ostringstream os;
-		//os<<player.win[i];
-		//putText(Top, os.str()+" pts.", Point(230,y2), FONT_HERSHEY_PLAIN, 1.1, blanco);
+		ostringstream os;
+		os<<player.win[i];
+		putText(Top, os.str()+" pts.", Point(230,y2), FONT_HERSHEY_PLAIN, 1.1, blanco);
 		y2+=25;
 	}
 } 
@@ -192,10 +329,16 @@ void onMouse(int event, int x, int y, int, void*){
 		else if (x>=120 && x<=355 && y>=355 && y<=390 && J1nombre.length()!=0 && J2nombre.length()!=0 && J1alias.length()!=0 && J2alias.length()!=0 )	
 			{
 					m=0;
-					cerrar=true;
+					//cerrar=true;
 					DibujarTablero();
 			}
 		}
+	}
+	else if (m==3){
+	if (event==EVENT_LBUTTONUP){
+		if (x>=140 && x<238 && y>=345 && y<=375){
+			m=1;
+			Menu();}}
 	}
 }
 
@@ -234,6 +377,8 @@ void Menu(){
 
 void inic()
 {
+	llenar();
+	leerDatos();
 	Menu();
 	//return 0;
 }
