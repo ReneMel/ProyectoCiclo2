@@ -8,7 +8,7 @@ using namespace cv;
 Scalar negro = Scalar(0, 0, 0);
 Scalar blanco = Scalar(255, 255, 255);
 Scalar amarillo(204,255,255);
-Mat Game(600, 600, CV_8UC3, negro);
+Mat ventana(600, 600, CV_8UC3, negro);
 
 void MouseTab(int event, int x, int y, int, void*){
 
@@ -16,25 +16,25 @@ void MouseTab(int event, int x, int y, int, void*){
 
 void dibujarAnillo(int radio, int casillas) {
 	int r=1;
-	Point centro = Point(Game.rows / 2, Game.cols / 2);
-	circle(Game, centro, radio, blanco, 2);
-	circle(Game, centro, radio+25, amarillo, 0.1);
+	Point centro = Point(ventana.rows / 2, ventana.cols / 2);
+	circle(ventana, centro, radio, blanco, 2);
+	circle(ventana, centro, radio+25, amarillo, 0.1);
 
 	float angulo = 2 * 3.14159 / casillas;
 	cout << "Dibujando casillas..." << endl;
 	for (float i = 0; i < 2 * 3.14159; i += angulo) {
 		cout << "angulo: " << i * 180 / 3.14159 << "\tgrados" << endl;
 		Point casilla = Point(centro.x + radio*cos(i), centro.y + radio*sin(i));
-		circle(Game, casilla, 20, blanco, CV_FILLED);
+		circle(ventana, casilla, 20, blanco, CV_FILLED);
 		//conecciones anillos 2 y 3 
 		Point l1=Point(centro.x+200*cos(i), centro.y+200*sin(i));
 		Point l2=Point(centro.x+150*cos(i), centro.y+150*sin(i));
-		line(Game,l1,l2,blanco,3);
+		line(ventana,l1,l2,blanco,3);
 		// Conecciones  anillos 3 y 4
 		Point l3=Point(centro.x+150*cos(i), centro.y+150*sin(i));
 		Point l4=Point(centro.x+100*cos(i), centro.y+100*sin(i));
 		if (r%2!=0 ){
-		line(Game,l3,l4,blanco,3);
+		line(ventana,l3,l4,blanco,3);
 	}
 		r++;
 
@@ -42,20 +42,20 @@ void dibujarAnillo(int radio, int casillas) {
 }
 
 void dibujarlineas(){
-	Point inicio =Point(Game.rows/2,50);
-	Point final = Point(Game.rows/2,550);
-	line(Game, inicio,final,blanco,3);
+	Point inicio =Point(ventana.rows/2,50);
+	Point final = Point(ventana.rows/2,550);
+	line(ventana, inicio,final,blanco,3);
 	inicio=Point(50,300);
 	final = Point(550,300);
-	line(Game, inicio,final,blanco,3);
+	line(ventana, inicio,final,blanco,3);
 	
 	inicio=Point(115,224);
 	final = Point(160,240);
-	line(Game, inicio,final,blanco,3);
+	line(ventana, inicio,final,blanco,3);
 //1 3 5 7 9 11 13 15
 }
 
-int DibujarTablero(){
+void dibujarTablero(){
 	//Anillos de prueba
 	//dibujarAnillo(200, 8);
 	//dibujarAnillo(100, 4);
@@ -68,7 +68,7 @@ int DibujarTablero(){
 	dibujarAnillo(50, 4);
 	dibujarlineas();
 
-	imshow("Tablero", Game);
+	imshow("Tablero", ventana);
 	waitKey(0);
 	setMouseCallback("Tablero",MouseTab);
 

@@ -193,7 +193,7 @@ void onMouse(int event, int x, int y, int, void*){
 			{
 					m=0;
 					cerrar=true;
-					dibujarTablero();
+					DibujarTablero();
 			}
 		}
 	}
