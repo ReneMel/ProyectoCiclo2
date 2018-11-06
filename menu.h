@@ -11,13 +11,15 @@ struct Jugador
 	string name[200];
 	string aka[200];
 	int win[200];
+	int lost[200];
+	int Game[200];
 }player;
 
 string J1nombre,J2nombre,J1alias,J2alias;
 char aux;
 int m=1;
 bool cerrar = false; 
-int temp1;
+int tempW, tempLost, tempGame;
 string tempN,Njugador,Ajugador;
 string tempA;
 int posicion;
@@ -51,8 +53,8 @@ Mat Top(400,400, CV_8UC3, negro);
 void Top10();
 
 void leerDatos(){
-	int pt, r=0;
-	char c[5];
+	int win,loss,juegos, r=0;
+	char c[5],d[5],f[5];
 	string score;
 	ifstream Datos("Datos.txt");
 	while(!Datos.eof()){
@@ -68,16 +70,26 @@ void leerDatos(){
 			for (int i=6; i<11;i++){
 				Ajugador+=score.at(i);
 			}
-			for (int i=12; i<score.length();i++){
+			for (int i=12; i<14;i++){
 				c[i-12]=score.at(i);
-				pt=atoi(c);
+				win=atoi(c);
+			}
+			for (int i=15; i<17;i++){
+				d[i-15]=score.at(i);
+				loss=atoi(d);
+			}
+			for (int i=17; i<20;i++){
+				f[i-17]=score.at(i);
+				juegos=atoi(f);
 			}
 				for (int i =0; i<200;i++){ 
 
 					if (player.name[i].length()==0){
 						player.name[i]=Njugador;
 						player.aka[i]=Ajugador;
-						player.win[i]=pt;
+						player.win[i]=win;
+						player.lost[i]=loss;
+						player.Game[i]=win+loss;
 						//cout <<player.win[i]<<endl;cout <<player.aka[i]<<endl;cout <<player.name[i]<<endl;
 						Njugador="";
 						Ajugador="";
@@ -102,7 +114,7 @@ void datostxt(){
 
 	}
 	orden=false;
-	//Nombre|AKA|puntaje
+	//Nombre|AKA|wins|lost|Game
 	Datos.close();
 }
 
@@ -114,9 +126,9 @@ void ordenTop(){
 		for (int j=0; j<=199; j++){
 			if (player.win[j]<player.win[j+1]){
 			//ESTE CODIGO ES PARA ORDENAR EL WINS
-				temp1=player.win[j];
+				tempW=player.win[j];
 				player.win[j]=player.win[j+1];
-				player.win[j+1]=temp1;
+				player.win[j+1]=tempW;
 			//ORDENAR EL NOMBRE
 				tempN=player.name[j];
 				player.name[j]=player.name[j+1];
@@ -125,6 +137,16 @@ void ordenTop(){
 				tempA=player.aka[j];
 				player.aka[j]=player.aka[j+1];
 				player.aka[j+1]=tempA;
+			//ORDENAR LOST
+				tempLost=player.lost[j];
+				player.lost[j]=player.lost[j+1];
+				player.lost[j+1]=tempLost;
+			//ORDENAR Game
+				tempGame=player.Game[j];
+				player.Game[j]=player.Game[j+1];
+				player.Game[j+1]=tempGame;
+
+
 		}
 	}
 	}
@@ -171,9 +193,14 @@ void DibujarTop(){
 
 	Rect mune(140,345,100,30);
 	rectangle(Top,mune,rojo,CV_FILLED);
-	putText(Top,"Menu",Point(150,370), FONT_HERSHEY_SIMPLEX, 0.8, blanco);
-	putText(Top,"A.K.A.",Point(90,70), FONT_HERSHEY_TRIPLEX, 0.8, Scalar(51,255,255));
-	putText(Top,"Wins",Point(225,70), FONT_HERSHEY_TRIPLEX, 0.8, Scalar(51,255,255));
+	putText(Top,"Menu",Point(170,370), FONT_HERSHEY_SIMPLEX, 0.8, blanco);
+	putText(Top,"A.K.A.",Point(55,70), FONT_HERSHEY_TRIPLEX, 0.8, Scalar(51,255,255));
+	putText(Top,"Lost",Point(210,70), FONT_HERSHEY_TRIPLEX, 0.8, Scalar(51,255,255));
+	putText(Top,"Wins",Point(140,70), FONT_HERSHEY_TRIPLEX, 0.8, Scalar(51,255,255));
+	putText(Top,"Game",Point(275,70), FONT_HERSHEY_TRIPLEX, 0.8, Scalar(51,255,255));
+
+
+
 
 
 	int y=95;
@@ -181,8 +208,8 @@ void DibujarTop(){
 		if (player.name[i].length()>=0){
 			ostringstream os;
 			os<<player.win[i];
-		putText(Top, player.aka[i], Point(90,y),FONT_HERSHEY_PLAIN, 1.1, blanco);
-		putText(Top, os.str()+" pts.", Point(230,y), FONT_HERSHEY_PLAIN, 1.1, blanco);
+		putText(Top, player.aka[i], Point(55,y),FONT_HERSHEY_PLAIN, 1.1, blanco);
+		//putText(Top, os.str()+" pts.", Point(90,y), FONT_HERSHEY_PLAIN, 1.1, blanco);
 		y+=25;
 	}	
 	}
@@ -190,9 +217,32 @@ void DibujarTop(){
 	for (int i=0; i<10; i++){
 		ostringstream os;
 		os<<player.win[i];
-		putText(Top, os.str()+" pts.", Point(230,y2), FONT_HERSHEY_PLAIN, 1.1, blanco);
+		putText(Top, os.str()+" wins.", Point(140,y2), FONT_HERSHEY_PLAIN, 1.1, blanco);
 		y2+=25;
 	}
+	y=95;
+	for (int i=0; i<10; i++){
+		ostringstream os;
+		os<<player.lost[i];
+		putText(Top, os.str()+" loss", Point(210,y), FONT_HERSHEY_PLAIN, 1.1, blanco);
+		y+=25;
+	}
+	y=95;
+	for (int i=0; i<10; i++){
+		ostringstream os;
+		os<<player.Game[i];
+		putText(Top, os.str()+" games.", Point(275,y), FONT_HERSHEY_PLAIN, 1.1, blanco);
+		y+=25;
+	}
+	y=95;
+	for (int i=1; i<=10; i++){
+		ostringstream os;
+		os<<i;
+		putText(Top, os.str()+".", Point(15,y), FONT_HERSHEY_PLAIN, 1.1, blanco);
+		y+=25;
+	}
+
+
 } 
 
 void Dibujarinscrip(Mat Ins){
