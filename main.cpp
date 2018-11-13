@@ -14,8 +14,6 @@ int main(int argc, char const *argv[])
 	Tablero juego;
 	juego.llenar();
 	inic();
-	
-
 
 	return 0;
 }

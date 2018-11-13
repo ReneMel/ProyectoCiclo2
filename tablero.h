@@ -114,42 +114,42 @@ void Tablero::llenar(){
 	//lenar de los primeros 3 anillos
 	for (int k=1; k<=3;k++){
 		if (k==1){
-			cout<<"anillo1"<<endl;
+			//cout<<"anillo1"<<endl;
 			s=pAnillo1;
 		}
 		else if (k==2){
-			cout<<"anillo2"<<endl;
+			//cout<<"anillo2"<<endl;
 			s=pAnillo2;
 		}
 		else if (k==3){
-			cout<<"anillo3"<<endl;
+			//cout<<"anillo3"<<endl;
 			s=pAnillo3;
 		}	
 		for (int i=1;i<=4;i++){
 			s->ficha=0;
 			c=s;
-			cout<<s->ficha<<endl;
+			//cout<<s->ficha<<endl;
 			for (int x=1; x<=3; x++){
 				c=c->sig;
 				c->ficha=(cuadrante)? 1:2;
-				cout<<c->ficha<<endl;
+				//cout<<c->ficha<<endl;
 			}
 			s=s->sig->sig->sig->sig;
 			cuadrante=!cuadrante;
 		}
 	}
 	s=pAnillo4;
-	cout<<"anillo4"<<endl;
+	//cout<<"anillo4"<<endl;
 	for (int i=1; i<=8; i++){
 		s->ficha=0;
-		cout<<s->ficha<<endl;
+		//cout<<s->ficha<<endl;
 		s=s->sig;
 	}
 	s=pAnillo4;
-	cout<<"anillo4"<<endl;
+	//cout<<"anillo4"<<endl;
 	for (int i=1; i<=4; i++){
 		s->ficha=0;
-		cout<<s->ficha<<endl;
+		//cout<<s->ficha<<endl;
 		s=s->sig;
 	}
 }

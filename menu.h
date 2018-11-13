@@ -287,7 +287,7 @@ void datos(){
 
 //void Top10();
 
-void onMouse(int event, int x, int y, int, void*){
+void Oldmouse(int event, int x, int y, int, void*){
 	if (m==1){
 		if (event==EVENT_LBUTTONUP){
 			
@@ -411,7 +411,7 @@ void Menu(){
 	namedWindow("Ventana");
 	int option=0;
 	dibujarBmenu(Menu);
-	setMouseCallback("Ventana", onMouse);
+	setMouseCallback("Ventana", Oldmouse);
 
 
 	while (m==1)
@@ -454,7 +454,7 @@ void inic()
 void Top10(){
 	namedWindow("Ventana");
 
-	setMouseCallback("Ventana", onMouse);
+	setMouseCallback("Ventana", Oldmouse);
 	DibujarTop(); 
 
 	while (true )
