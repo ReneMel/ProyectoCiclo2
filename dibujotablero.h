@@ -1,5 +1,5 @@
 #include <opencv2/opencv.hpp>
-//#include "tablero.h"
+#include "tablero.h"
 #include <iostream>
 #include <cmath>
 using namespace std;
@@ -8,7 +8,10 @@ using namespace cv;
 
 Scalar negro = Scalar(0, 0, 0);
 Scalar blanco = Scalar(255, 255, 255);
-Scalar amarillo(204,255,255);
+Scalar amarillo= Scalar(204,255,255);
+Scalar Color;
+//Scalar rojo= Scalar (0,0,255);
+//Scalar azul= Scalar (255,0,26);
 Mat Game(600, 600, CV_8UC3, negro);
 int Anillo1X[15];
 int Anillo1Y[15];
@@ -139,6 +142,7 @@ void Onmouse(int event, int x, int y, int, void*){
 		//PREPARANDO CIRCULOS DE EL SEGUNDO ANILLO 
 		if (x >= Anillo1X[0]-20 && x < Anillo1X[0]+20 && y >= Anillo1Y[0]-20 && y <=Anillo1Y[0]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+
 			
 		}
 		if (x >= Anillo1X[1]-20 && x < Anillo1X[1]+20 && y >= Anillo1Y[1]-20 && y <=Anillo1Y[1]+20){
@@ -383,12 +387,30 @@ void Onmouse(int event, int x, int y, int, void*){
 		if (x >= Anillo5X[3]-20 && x < Anillo5X[3]+20 && y >= Anillo5Y[3]-20 && y <=Anillo5Y[3]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 	}
-}
+	}
 }
 
 
 void dibujarAnillo(int radio, int casillas) {
 	int r=1;
+	Nodo*aux;
+
+	if (radio==250){
+		aux=pAnillo1;
+	}
+	else if (radio==200){
+		aux=pAnillo2;
+	}
+	else if (radio==150){
+		aux=pAnillo3;
+	}
+	else if (radio==100){
+		aux=pAnillo4;
+	}
+	else if (radio==50){
+		aux=pAnillo5;
+	}
+
 	Point centro = Point(Game.rows / 2, Game.cols / 2);
 	circle(Game, centro, radio, blanco, 2);
 	circle(Game, centro, radio+25, amarillo, 0.1);
@@ -398,7 +420,17 @@ void dibujarAnillo(int radio, int casillas) {
 	for (float i = 0; i < 2 * 3.14159; i += angulo) {
 		cout << "angulo: " << i * 180 / 3.14159 << "\tgrados" << endl;
 		Point casilla = Point(centro.x + radio*cos(i), centro.y + radio*sin(i));
-		circle(Game, casilla, 20, blanco, CV_FILLED);
+		if (aux->ficha==0){
+			Color=blanco;
+		}
+		else if (aux->ficha==1){
+			Color=Scalar (0,0,255);
+		}
+		else if (aux->ficha==2){
+			Color=Scalar (255,0,26);
+		}
+
+		
 		GuardarcentrosX(casilla.x, radio);
 		GuardarcentrosY(casilla.y, radio);
 		//conecciones anillos 2 y 3 
@@ -410,9 +442,10 @@ void dibujarAnillo(int radio, int casillas) {
 		Point l4=Point(centro.x+100*cos(i), centro.y+100*sin(i));
 		if (r%2!=0 ){
 		line(Game,l3,l4,blanco,3);
-	}
+		}
+		circle(Game, casilla, 20, Color, CV_FILLED);
 		r++;
-
+		aux=aux->sig;
 	}
 }
 
@@ -427,20 +460,22 @@ void dibujarlineas(){
 	inicio=Point(115,224);
 	final = Point(160,240);
 	line(Game, inicio,final,blanco,3);
-//1 3 5 7 9 11 13 15
 }
 
 int DibujarTablero(){
+	Tablero juego;
+	juego.llenar();
 	
 	fill();
+	dibujarlineas();
+
 	dibujarAnillo(250, 16);
 	//imprimir();
 	dibujarAnillo(200, 16);
 	dibujarAnillo(150, 16);
 	dibujarAnillo(100, 8);
 	dibujarAnillo(50, 4);
-	dibujarlineas();
-
+	
 
 	imshow("Tablero", Game);
 	waitKey(0);

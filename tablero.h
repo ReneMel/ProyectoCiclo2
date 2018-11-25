@@ -4,14 +4,12 @@
 using namespace std;
 
 struct Nodo {
-	// Cuarto punteros: hacia upera, hacia downntro,
-	// hacia el siguiente y hacia el anterior.
 	Nodo *up, *down, *sig, *ant;
 	int ficha;
-	// Otros campos, podr�an ser, por ejemplo: campo
-	// para la ficha y coordenadas de cada nodo.
 };
 
+Nodo*Mov1=NULL;
+Nodo*Mov2=NULL;
 // Punteros auxiliares para crear cada anillo del tablero.
 // Luego se har� que pInicio apunte a "toda" la estructura.
 Nodo *pAnillo1 = NULL;

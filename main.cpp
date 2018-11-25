@@ -1,4 +1,4 @@
-#include "tablero.h"
+//#include "tablero.h"
 //#include "dibujotablero.h"
 #include "menu.h"
 #include <opencv2/opencv.hpp>
@@ -11,8 +11,8 @@ using namespace cv;
 
 int main(int argc, char const *argv[])
 {
-	Tablero juego;
-	juego.llenar();
+	//Tablero juego;
+	//juego.llenar();
 	inic();
 
 	return 0;
