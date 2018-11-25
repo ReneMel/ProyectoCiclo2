@@ -138,257 +138,322 @@ void GuardarcentrosY(int puntoY, int radio){
 
 
 void Onmouse(int event, int x, int y, int, void*){
-	if (event==EVENT_LBUTTONUP){
+		if (event==EVENT_LBUTTONUP){
 		//PREPARANDO CIRCULOS DE EL SEGUNDO ANILLO 
 		if (x >= Anillo1X[0]-20 && x < Anillo1X[0]+20 && y >= Anillo1Y[0]-20 && y <=Anillo1Y[0]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-
-			
+			Nodo*aux;
+			aux= pAnillo1;
+						
 		}
 		if (x >= Anillo1X[1]-20 && x < Anillo1X[1]+20 && y >= Anillo1Y[1]-20 && y <=Anillo1Y[1]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			pAnillo1 -> sig;
 			
 		}
 		if (x >= Anillo1X[2]-20 && x < Anillo1X[2]+20 && y >= Anillo1Y[2]-20 && y <=Anillo1Y[2]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			pAnillo1 -> sig -> sig;
 			
 		}
 		if (x >= Anillo1X[3]-20 && x < Anillo1X[3]+20 && y >= Anillo1Y[3]-20 && y <=Anillo1Y[3]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo1 -> sig -> sig -> sig;
+						
 		}
 		if (x >= Anillo1X[4]-20 && x < Anillo1X[4]+20 && y >= Anillo1Y[4]-20 && y <=Anillo1Y[4]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo1 -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo1X[5]-20 && x < Anillo1X[5]+20 && y >= Anillo1Y[5]-20 && y <=Anillo1Y[5]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo1 -> sig -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo1X[6]-20 && x < Anillo1X[6]+20 && y >= Anillo1Y[6]-20 && y <=Anillo1Y[6]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo1 -> sig -> sig -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo1X[7]-20 && x < Anillo1X[7]+20 && y >= Anillo1Y[7]-20 && y <=Anillo1Y[7]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo1 -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo1X[8]-20 && x < Anillo1X[8]+20 && y >= Anillo1Y[8]-20 && y <=Anillo1Y[8]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo1 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo1X[9]-20 && x < Anillo1X[9]+20 && y >= Anillo1Y[9]-20 && y <=Anillo1Y[9]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo1 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo1X[10]-20 && x < Anillo1X[10]+20 && y >= Anillo1Y[10]-20 && y <=Anillo1Y[10]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo1 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo1X[11]-20 && x < Anillo1X[11]+20 && y >= Anillo1Y[11]-20 && y <=Anillo1Y[11]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-		
+			pAnillo1 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo1X[12]-20 && x < Anillo1X[12]+20 && y >= Anillo1Y[12]-20 && y <=Anillo1Y[12]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-		
+			pAnillo1 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo1X[13]-20 && x < Anillo1X[13]+20 && y >= Anillo1Y[13]-20 && y <=Anillo1Y[13]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-		
+			pAnillo1 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo1X[14]-20 && x < Anillo1X[14]+20 && y >= Anillo1Y[14]-20 && y <=Anillo1Y[14]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-		
+			pAnillo1 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo1X[15]-20 && x < Anillo1X[15]+20 && y >= Anillo1Y[15]-20 && y <=Anillo1Y[15]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-		
+			pAnillo1 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
+
 		}
 		//PREPARANDO CIRCULOS DE EL SEGUNDO ANILLO 
 		if (x >= Anillo2X[0]-20 && x < Anillo2X[0]+20 && y >= Anillo2Y[0]-20 && y <=Anillo2Y[0]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			Nodo*aux;
+			aux = pAnillo2;
+
 		}
 		if (x >= Anillo2X[1]-20 && x < Anillo2X[1]+20 && y >= Anillo2Y[1]-20 && y <=Anillo2Y[1]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo2 -> sig;
+
 		}
 		if (x >= Anillo2X[2]-20 && x < Anillo2X[2]+20 && y >= Anillo2Y[2]-20 && y <=Anillo2Y[2]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo2 -> sig -> sig;
+
 		}
 		if (x >= Anillo2X[3]-20 && x < Anillo2X[3]+20 && y >= Anillo2Y[3]-20 && y <=Anillo2Y[3]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo2 -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo2X[4]-20 && x < Anillo2X[4]+20 && y >= Anillo2Y[4]-20 && y <=Anillo2Y[4]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo2 -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo2X[5]-20 && x < Anillo2X[5]+20 && y >= Anillo2Y[5]-20 && y <=Anillo2Y[5]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo2 -> sig -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo2X[6]-20 && x < Anillo2X[6]+20 && y >= Anillo2Y[6]-20 && y <=Anillo2Y[6]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo2 -> sig -> sig -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo2X[7]-20 && x < Anillo2X[7]+20 && y >= Anillo2Y[7]-20 && y <=Anillo2Y[7]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo2 -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo2X[8]-20 && x < Anillo2X[8]+20 && y >= Anillo2Y[8]-20 && y <=Anillo2Y[8]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo2 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo2X[9]-20 && x < Anillo2X[9]+20 && y >= Anillo2Y[9]-20 && y <=Anillo2Y[9]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo2 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo2X[10]-20 && x < Anillo2X[10]+20 && y >= Anillo2Y[10]-20 && y <=Anillo2Y[10]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo2 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo2X[11]-20 && x < Anillo2X[11]+20 && y >= Anillo2Y[11]-20 && y <=Anillo2Y[11]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-		
+			pAnillo2 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo2X[12]-20 && x < Anillo2X[12]+20 && y >= Anillo2Y[12]-20 && y <=Anillo2Y[12]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-		
+			pAnillo2 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo2X[13]-20 && x < Anillo2X[13]+20 && y >= Anillo2Y[13]-20 && y <=Anillo2Y[13]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-		
+			pAnillo2 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig; 
+
 		}
 		if (x >= Anillo2X[14]-20 && x < Anillo2X[14]+20 && y >= Anillo2Y[14]-20 && y <=Anillo2Y[14]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-		
+			pAnillo2 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo2X[15]-20 && x < Anillo2X[15]+20 && y >= Anillo2Y[15]-20 && y <=Anillo2Y[15]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-		
+			pAnillo2 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig; 
+
 		}
 		//ANILLO 3
 		if (x >= Anillo3X[0]-20 && x < Anillo3X[0]+20 && y >= Anillo3Y[0]-20 && y <=Anillo3Y[0]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			Nodo*aux;
+			aux = pAnillo3;
+
 		}
 		if (x >= Anillo3X[1]-20 && x < Anillo3X[1]+20 && y >= Anillo3Y[1]-20 && y <=Anillo3Y[1]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo3 -> sig;
+
 		}
 		if (x >= Anillo3X[2]-20 && x < Anillo3X[2]+20 && y >= Anillo3Y[2]-20 && y <=Anillo3Y[2]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo3 -> sig -> sig;
+
 		}
 		if (x >= Anillo3X[3]-20 && x < Anillo3X[3]+20 && y >= Anillo3Y[3]-20 && y <=Anillo3Y[3]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo3 -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo3X[4]-20 && x < Anillo3X[4]+20 && y >= Anillo3Y[4]-20 && y <=Anillo3Y[4]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo3 -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo3X[5]-20 && x < Anillo3X[5]+20 && y >= Anillo3Y[5]-20 && y <=Anillo3Y[5]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo3 -> sig -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo3X[6]-20 && x < Anillo3X[6]+20 && y >= Anillo3Y[6]-20 && y <=Anillo3Y[6]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo3 -> sig -> sig -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo3X[7]-20 && x < Anillo3X[7]+20 && y >= Anillo3Y[7]-20 && y <=Anillo3Y[7]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo3 -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo3X[8]-20 && x < Anillo3X[8]+20 && y >= Anillo3Y[8]-20 && y <=Anillo3Y[8]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo3 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo3X[9]-20 && x < Anillo3X[9]+20 && y >= Anillo3Y[9]-20 && y <=Anillo3Y[9]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo3 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo3X[10]-20 && x < Anillo3X[10]+20 && y >= Anillo3Y[10]-20 && y <=Anillo3Y[10]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo3 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo3X[11]-20 && x < Anillo3X[11]+20 && y >= Anillo3Y[11]-20 && y <=Anillo3Y[11]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-		
+			pAnillo3 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo3X[12]-20 && x < Anillo3X[12]+20 && y >= Anillo3Y[12]-20 && y <=Anillo3Y[12]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-		
+			pAnillo3 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo3X[13]-20 && x < Anillo3X[13]+20 && y >= Anillo3Y[13]-20 && y <=Anillo3Y[13]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-		
+			pAnillo3 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo3X[14]-20 && x < Anillo3X[14]+20 && y >= Anillo3Y[14]-20 && y <=Anillo3Y[14]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-		
+			pAnillo3 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo3X[15]-20 && x < Anillo3X[15]+20 && y >= Anillo3Y[15]-20 && y <=Anillo3Y[15]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-		
+			pAnillo3 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
+
 		}
 
 		// ANILLO 4
 
 		if (x >= Anillo4X[0]-20 && x < Anillo4X[0]+20 && y >= Anillo4Y[0]-20 && y <=Anillo4Y[0]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			Nodo*aux;
+			aux = pAnillo4;
+
 		}
 		if (x >= Anillo4X[1]-20 && x < Anillo4X[1]+20 && y >= Anillo4Y[1]-20 && y <=Anillo4Y[1]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo4 -> sig;
+
 		}
 		if (x >= Anillo4X[2]-20 && x < Anillo4X[2]+20 && y >= Anillo4Y[2]-20 && y <=Anillo4Y[2]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo4 -> sig -> sig;
+
 		}
 		if (x >= Anillo4X[3]-20 && x < Anillo4X[3]+20 && y >= Anillo4Y[3]-20 && y <=Anillo4Y[3]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo4 -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo4X[4]-20 && x < Anillo4X[4]+20 && y >= Anillo4Y[4]-20 && y <=Anillo4Y[4]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo4 -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo4X[5]-20 && x < Anillo4X[5]+20 && y >= Anillo4Y[5]-20 && y <=Anillo4Y[5]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo4 -> sig -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo4X[6]-20 && x < Anillo4X[6]+20 && y >= Anillo4Y[6]-20 && y <=Anillo4Y[6]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo4 -> sig -> sig -> sig -> sig -> sig -> sig;
+
 		}
 		if (x >= Anillo4X[7]-20 && x < Anillo4X[7]+20 && y >= Anillo4Y[7]-20 && y <=Anillo4Y[7]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo4 -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
+
 		}
 
 		//ANILLO 5
 		if (x >= Anillo5X[0]-20 && x < Anillo5X[0]+20 && y >= Anillo5Y[0]-20 && y <=Anillo5Y[0]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			Nodo*aux;
+			aux = pAnillo5;
 		}
 		if (x >= Anillo5X[1]-20 && x < Anillo5X[1]+20 && y >= Anillo5Y[1]-20 && y <=Anillo5Y[1]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo5 -> sig;
+
 		}
 		if (x >= Anillo5X[2]-20 && x < Anillo5X[2]+20 && y >= Anillo5Y[2]-20 && y <=Anillo5Y[2]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			
+			pAnillo5 -> sig -> sig;
+
 		}
 		if (x >= Anillo5X[3]-20 && x < Anillo5X[3]+20 && y >= Anillo5Y[3]-20 && y <=Anillo5Y[3]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			pAnillo5 -> sig -> sig -> sig;
+
 	}
 	}
 }
+
 
 
 void dibujarAnillo(int radio, int casillas) {
