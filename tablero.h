@@ -5,7 +5,7 @@ using namespace std;
 
 struct Nodo {
 	Nodo *up, *down, *sig, *ant;
-	int ficha;
+	int ficha=0;
 };
 
 Nodo*Mov1=NULL;

@@ -380,7 +380,8 @@ void Oldmouse(int event, int x, int y, int, void*){
 			{
 					m=0;
 					//cerrar=true;
-					DibujarTablero();
+					//DibujarTablero();
+					tableroinic();
 			}
 		}
 	}
