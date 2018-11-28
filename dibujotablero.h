@@ -54,6 +54,8 @@ void Dibujarsuma(){\
 
 void contar(){
 	Nodo*suma= pAnillo1;
+	Totalazul=0;
+	Totalrojo=0;
 
 	do{
 		if (suma->ficha==1){
