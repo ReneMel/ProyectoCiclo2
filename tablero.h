@@ -6,6 +6,7 @@ using namespace std;
 struct Nodo {
 	Nodo *up, *down, *sig, *ant;
 	int ficha=0;
+	int num;
 };
 
 Nodo*Mov1=NULL;
@@ -25,6 +26,7 @@ public:
 	Tablero();
 	void crearAnillo(Nodo **, int);
 	void llenar();
+	void comprobar();
 };
 
 Tablero::Tablero()
@@ -109,6 +111,56 @@ void Tablero::crearAnillo(Nodo **p, int numNodos)
 	s->sig->ant = s;
 }
 
+void Tablero::comprobar(){
+	int aux;
+	Nodo*ss;
+	ss=pAnillo1;
+	aux=100;
+	do {
+		ss->num=aux;
+		aux++;
+		ss=ss->sig;
+
+
+	}while(ss!=pAnillo1); 
+	ss=pAnillo2;
+	aux=200;
+	do {
+		ss->num=aux;
+		aux++;
+		ss=ss->sig;
+
+
+	}while(ss!=pAnillo2); 
+	ss=pAnillo3;
+	aux=300;
+	do {
+		ss->num=aux;
+		aux++;
+		ss=ss->sig;
+
+
+	}while(ss!=pAnillo3); 
+	ss=pAnillo4;
+	aux=400;
+	do {
+		ss->num=aux;
+		aux++;
+		ss=ss->sig;
+
+
+	}while(ss!=pAnillo4); 
+	ss=pAnillo5;
+	aux=500;
+	do {
+		ss->num=aux;
+		aux++;
+		ss=ss->sig;
+
+
+	}while(ss!=pAnillo5); 
+
+}
 
 void Tablero::llenar(){
 	Nodo*s;
@@ -157,4 +209,6 @@ void Tablero::llenar(){
 		s=s->sig;
 	}
 }
+
+
 

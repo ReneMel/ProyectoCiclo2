@@ -1206,6 +1206,20 @@ void Onmouse(int event, int x, int y, int, void*){
 		}
 		if (aux!=NULL){
 			cout<<aux->ficha<<endl;
+			cout<<aux->num<<endl;
+			if (aux->sig!=NULL){
+				cout<<"Conectado en sig con"<<aux->sig->num<<endl;
+			}
+			if (aux->ant!=NULL){
+				cout<<"Conectado en ant con"<<aux->ant->num<<endl;
+			}
+			if (aux->up!=NULL){
+				cout<<"Conectado en up con"<<aux->up->num<<endl;
+			}
+			if (aux->down!=NULL){
+				cout<<"Conectado en dow con"<<aux->down->num<<endl;
+			}
+
 			
 
 		}
@@ -1257,6 +1271,7 @@ void  DibujarTablero(){
 void tableroinic(){
 	Tablero juego;
 	juego.llenar();
+	juego.comprobar();
 	contar();
 
 
