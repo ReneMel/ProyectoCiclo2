@@ -16,6 +16,7 @@ Scalar amarillo= Scalar(204,255,255);
 Scalar Color;
 bool turno=true;
 bool restart=true;
+bool endgame=false;
 //int clicks=0;
 bool moves=false;
 bool Anillo5=false;
@@ -124,12 +125,14 @@ void contar(){
 
 }
 
+
 void revisar(){
 	Nodo*revisar=pAnillo5;
 	int valor=turno? 1:2;
 
 	if (revisar->ficha==revisar->sig->ficha and revisar->sig->ficha==revisar->sig->sig->ficha and revisar->sig->sig->ficha==revisar->sig->sig->sig->ficha){
 		cout<<"Hola, ganaste mahe "<<endl;
+		endgame=true;
 	}
 
 
@@ -391,6 +394,19 @@ void movimiento(Nodo*actual, Nodo*destino, int valor){
 			turno=!turno;
 		}
 	}
+	else if (destino->up==actual->down and destino->up->ficha!=0 and actual->ficha!=destino->up->ficha and actual->ficha==valor){
+		saltarinxd=actual->ficha;
+		actual->down->ficha=0;
+		actual->ficha=0;
+		destino->ficha=saltarinxd;
+		if (destino->down->ficha==0){
+			turno=!turno;
+		}
+
+
+
+	}
+
 	Mov1=NULL;
 	Mov2=NULL;
 	dibujarAnillo(250, 16);
@@ -404,6 +420,7 @@ void movimiento(Nodo*actual, Nodo*destino, int valor){
 	Rect turno  (400,575,599,575);
 	rectangle(Game, turno ,Color,CV_FILLED);
 	putText(Game, "Es turno de "+jugador, Point(420, 595), FONT_HERSHEY_SIMPLEX, 0.6, negro);
+	contar();
 
 
 	imshow("Tablero", Game);
@@ -451,11 +468,11 @@ void Reiniciar(){
 
 void Onmouse(int event, int x, int y, int, void*){
 	  Nodo*aux=NULL;
-	  	//Mov1=NULL;
-		//Mov2=NULL;
+	 int valor=0;
+	 valor = turno? 1:2;
 
-	  int valor=0;
-	  	valor = turno? 1:2;
+	 if (endgame)return;
+
 		if (event==EVENT_LBUTTONUP){
 		//PREPARANDO CIRCULOS DE EL SEGUNDO ANILLO
 		if (x >= Anillo1X[0]-20 && x < Anillo1X[0]+20 && y >= Anillo1Y[0]-20 && y <=Anillo1Y[0]+20){

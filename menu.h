@@ -184,7 +184,26 @@ void llenarname(){
 	
 }
 
+void kakuempate(){
+	Mat Empate(200, 500, CV_8UC3, Scalar(51,255,255));
+    putText(Empate, "-Empate-", Point(5, 100), FONT_HERSHEY_SIMPLEX, 3, verde);
+    imshow("Empate", Empate);
 
+    //endgame = true;
+}
+
+void ganador(){
+	if (endgame ){
+		string winner="";
+		winner=(turn? J1nombre:J2nombre);
+	       Mat ganador(200, 600, CV_8UC3, Scalar(51,255,255));
+	    putText(ganador, "El ganador es: "+winner, Point(5, 100), FONT_HERSHEY_SIMPLEX, 1.6, rojo);
+	    imshow("Ganador", ganador);
+	    //endgame=true;
+	    llenarname();
+	}
+    
+}
 
 void DibujarTop(){
 	Rect  titulo (90,10,210,30);
