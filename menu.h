@@ -313,7 +313,6 @@ void Oldmouse(int event, int x, int y, int, void*){
 				if (x >= 75 && x < 314 && y >= 75 && y <=147) {
 					m=2;
 					datos();
-
 				}
 				else if(x>=75 && x< 314 && y>=155 && y <=230){
 					m=3;

@@ -3,6 +3,7 @@
 //#include "menu.h"
 #include <iostream>
 #include <cmath>
+#include <string>
 using namespace std;
 using namespace cv;
 
@@ -39,6 +40,17 @@ int Anillo5Y[3];
 int i=0;
 int Totalazul=0;
 int Totalrojo=0;
+
+void Dibujarsuma(){\
+	ostringstream os;
+	ostringstream os1;
+	os<<Totalrojo;
+	os1<<Totalazul;
+	Rect Suma  (0,0,140,40);
+	rectangle(Game, Suma ,celeste,CV_FILLED);
+	putText(Game, "Piezas rojas: "+os.str(), Point(10, 16), FONT_HERSHEY_SIMPLEX, 0.4, negro);
+	putText(Game, "Piezas azules: "+os1.str(), Point(10, 27), FONT_HERSHEY_SIMPLEX, 0.4, negro);
+}
 
 void contar(){
 	Nodo*suma= pAnillo1;
@@ -105,6 +117,7 @@ void contar(){
 		suma=suma->sig;
 
 	}while(suma!=pAnillo5);
+	Dibujarsuma();
 
 }
 
@@ -226,12 +239,12 @@ void dibujarlineas(){
 	Point final = Point(Game.rows/2,332);
 	line(Game, inicio,final,blanco,3);
 
-//cruz horizontal
+	//cruz horizontal
 	inicio=Point(271,301);
 	final = Point(330,302);
 	line(Game, inicio,final,blanco,3);
 
-//ultima pieza de cada lado
+	//ultima pieza de cada lado
 	inicio=Point(208,391);
 	final = Point(215,385);
 	line(Game, inicio,final,blanco,3);
@@ -353,7 +366,7 @@ void dibujarAnillo(int radio, int casillas) {
 		line(Game,l3,l4,blanco,3);
 		}
 		circle(Game, casilla, 20, Color, CV_FILLED);
-		//dibujarlineas();
+		dibujarlineas();
 		r++;
 		aux=aux->sig;
 	}
@@ -1092,8 +1105,7 @@ void Onmouse(int event, int x, int y, int, void*){
 			cout<<"Primer movimiento es..."<<Mov1->ficha<<endl;
 			cout<<"El segundo movimiento es..."<<Mov2->ficha<<endl;
 			movimiento(Mov1, Mov2, valor);
-		}
-		
+		}		
 	}
 }
 
@@ -1116,9 +1128,7 @@ void  DibujarTablero(){
 	Rect turno  (400,575,599,575);
 	rectangle(Game, turno ,Color,CV_FILLED);
 	putText(Game, "Es turno de "+jugador, Point(420, 595), FONT_HERSHEY_SIMPLEX, 0.6, negro);
-	putText(Game, "Piezas rojas: "+Totalrojo, Point(10, 16), FONT_HERSHEY_SIMPLEX, 0.3, blanco);
-	putText(Game, "Piezas azules: "+Totalazul, Point(0, 53), FONT_HERSHEY_SIMPLEX, 0.3, blanco);
-
+	
 	imshow("Tablero", Game);
 	waitKey(0);
 	setMouseCallback("Tablero",Onmouse);
