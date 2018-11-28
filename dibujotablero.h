@@ -8,6 +8,7 @@ using namespace cv;
 
 
 Scalar negro = Scalar(0, 0, 0);
+Scalar celeste = Scalar(0, 150, 210);
 Scalar blanco = Scalar(255, 255, 255);
 Scalar amarillo= Scalar(204,255,255);
 Scalar Color;
@@ -16,7 +17,7 @@ bool turno=true;
 bool moves=false;
 //Scalar rojo= Scalar (0,0,255);
 //Scalar azul= Scalar (255,0,26);
-Mat Game(600, 600, CV_8UC3, negro);
+Mat Game(600, 600, CV_8UC3, celeste);
 int Anillo1X[15];
 int Anillo1Y[15];
 
@@ -139,15 +140,80 @@ void GuardarcentrosY(int puntoY, int radio){
 }
 
 void dibujarlineas(){
-	Point inicio =Point(Game.rows/2,50);
-	Point final = Point(Game.rows/2,550);
-	line(Game, inicio,final,blanco,3);
-	inicio=Point(50,300);
-	final = Point(550,300);
+	Point inicio =Point(Game.rows/2,271);
+	Point final = Point(Game.rows/2,332);
 	line(Game, inicio,final,blanco,3);
 
-	inicio=Point(115,224);
-	final = Point(160,240);
+//cruz horizontal
+	inicio=Point(271,301);
+	final = Point(330,302);
+	line(Game, inicio,final,blanco,3);
+
+//ultima pieza de cada lado
+	inicio=Point(208,391);
+	final = Point(215,385);
+	line(Game, inicio,final,blanco,3);
+
+	inicio=Point(208,209);
+	final = Point(216,216);
+	line(Game, inicio,final,blanco,3);
+
+	inicio=Point(392,208);
+	final = Point(385,215);
+	line(Game, inicio,final,blanco,3);
+
+	inicio=Point(385,385);
+	final = Point(392,392);
+	line(Game, inicio,final,blanco,3);
+
+	//Dibujar lineas de la horizontal
+	inicio=Point(72,300);
+	final = Point(82,300);
+	line(Game, inicio,final,blanco,3);
+
+	inicio=Point(172,300);
+	final = Point(182,300);
+	line(Game, inicio,final,blanco,3);
+
+	inicio=Point(222,300);
+	final = Point(232,300);
+	line(Game, inicio,final,blanco,3);
+
+	inicio=Point(372,300);
+	final = Point(382,300);
+	line(Game, inicio,final,blanco,3);
+
+	inicio=Point(422,300);
+	final = Point(432,300);
+	line(Game, inicio,final,blanco,3);
+
+	inicio=Point(522,300);
+	final = Point(532,300);
+	line(Game, inicio,final,blanco,3);
+
+	//dibujar lineas Vertical
+	inicio=Point(300,72);
+	final = Point(300,82);
+	line(Game, inicio,final,blanco,3);
+
+	inicio=Point(300,172);
+	final = Point(300,182);
+	line(Game, inicio,final,blanco,3);
+
+	inicio=Point(300,222);
+	final = Point(300,232);
+	line(Game, inicio,final,blanco,3);
+
+	inicio=Point(300,372);
+	final = Point(300,382);
+	line(Game, inicio,final,blanco,3);
+
+	inicio=Point(300,422);
+	final = Point(300,432);
+	line(Game, inicio,final,blanco,3);
+
+	inicio=Point(300,522);
+	final = Point(300,532);
 	line(Game, inicio,final,blanco,3);
 }
 
@@ -168,7 +234,7 @@ void dibujarAnillo(int radio, int casillas) {
 	else if (radio==100){
 		aux=pAnillo4;
 	}
-	else if (radio==50){ 
+	else if (radio==50){
 		aux=pAnillo5;
 	}
 
@@ -195,12 +261,12 @@ void dibujarAnillo(int radio, int casillas) {
 		GuardarcentrosX(casilla.x, radio);
 		GuardarcentrosY(casilla.y, radio);
 		//conecciones anillos 2 y 3
-		Point l1=Point(centro.x+200*cos(i), centro.y+200*sin(i));
-		Point l2=Point(centro.x+150*cos(i), centro.y+150*sin(i));
+		Point l1=Point(centro.x+178*cos(i), centro.y+178*sin(i));
+		Point l2=Point(centro.x+170*cos(i), centro.y+170*sin(i));
 		line(Game,l1,l2,blanco,3);
 		// Conecciones  anillos 3 y 4
-		Point l3=Point(centro.x+150*cos(i), centro.y+150*sin(i));
-		Point l4=Point(centro.x+100*cos(i), centro.y+100*sin(i));
+		Point l3=Point(centro.x+178*cos(i), centro.y+178*sin(i));
+		Point l4=Point(centro.x+162*cos(i), centro.y+162*sin(i));
 		if (r%2!=0 ){
 		line(Game,l3,l4,blanco,3);
 		}
@@ -235,7 +301,7 @@ void movimiento(Nodo*actual, Nodo*destino, int valor){
 	jugador=turno? "ROJO":"AZUL";
 	Color= turno? Scalar (0,0,255): Scalar (255,0,26);
 	Rect turno  (400,575,599,575);
-	rectangle(Game, turno ,Color,CV_FILLED); 
+	rectangle(Game, turno ,Color,CV_FILLED);
 	putText(Game, "Es turno de "+jugador, Point(420, 595), FONT_HERSHEY_SIMPLEX, 0.6, negro);
 
 
@@ -266,7 +332,7 @@ void Onmouse(int event, int x, int y, int, void*){
 			else if (Mov2==NULL and Mov1!=NULL){
 				Mov2=aux;
 			}
-			
+
 		}
 		if (x >= Anillo1X[1]-20 && x < Anillo1X[1]+20 && y >= Anillo1Y[1]-20 && y <=Anillo1Y[1]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
@@ -277,7 +343,7 @@ void Onmouse(int event, int x, int y, int, void*){
 			else if (Mov2==NULL and Mov1!=NULL){
 				Mov2=aux;
 			}
-			
+
 		}
 		if (x >= Anillo1X[2]-20 && x < Anillo1X[2]+20 && y >= Anillo1Y[2]-20 && y <=Anillo1Y[2]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
@@ -802,7 +868,7 @@ void Onmouse(int event, int x, int y, int, void*){
 			else if (Mov2==NULL and Mov1!=NULL){
 				Mov2=aux;
 			}
-			
+
 
 		}
 		if (x >= Anillo4X[1]-20 && x < Anillo4X[1]+20 && y >= Anillo4Y[1]-20 && y <=Anillo4Y[1]+20){
@@ -919,7 +985,7 @@ void Onmouse(int event, int x, int y, int, void*){
 		}
 		if (x >= Anillo5X[3]-20 && x < Anillo5X[3]+20 && y >= Anillo5Y[3]-20 && y <=Anillo5Y[3]+20){
 			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
-			aux=pAnillo5 -> sig -> sig -> sig;	
+			aux=pAnillo5 -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
 			}
@@ -942,7 +1008,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 
 void  DibujarTablero(){
-	
+
 	//dibujarlineas();
 
 	dibujarAnillo(250, 16);
@@ -956,7 +1022,7 @@ void  DibujarTablero(){
 	jugador=turno? "ROJO":"AZUL";
 	Color= turno? Scalar (0,0,255): Scalar (255,0,26);
 	Rect turno  (400,575,599,575);
-	rectangle(Game, turno ,Color,CV_FILLED); 
+	rectangle(Game, turno ,Color,CV_FILLED);
 	putText(Game, "Es turno de "+jugador, Point(420, 595), FONT_HERSHEY_SIMPLEX, 0.6, negro);
 
 	imshow("Tablero", Game);
