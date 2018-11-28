@@ -1,5 +1,6 @@
 #include <opencv2/opencv.hpp>
 #include "tablero.h"
+//#include "menu.h"
 #include <iostream>
 #include <cmath>
 using namespace std;
@@ -15,6 +16,7 @@ Scalar Color;
 bool turno=true;
 //int clicks=0;
 bool moves=false;
+bool Anillo5=false;
 //Scalar rojo= Scalar (0,0,255);
 //Scalar azul= Scalar (255,0,26);
 Mat Game(600, 600, CV_8UC3, celeste);
@@ -35,7 +37,87 @@ int Anillo5Y[3];
 //int x1=1,y1=1;
 //int Anillo4[16];
 int i=0;
+int Totalazul=0;
+int Totalrojo=0;
 
+void contar(){
+	Nodo*suma= pAnillo1;
+
+	do{
+		if (suma->ficha==1){
+			Totalrojo++;
+		}
+		if(suma->ficha==2){
+			Totalazul++;
+		}
+		suma=suma->sig;
+
+	}while(suma!=pAnillo1);
+
+	suma=pAnillo2;
+
+	do{
+		if (suma->ficha==1){
+			Totalrojo++;
+		}
+		if(suma->ficha==2){
+			Totalazul++;
+		}
+		suma=suma->sig;
+
+	}while(suma!=pAnillo2);
+	
+	suma=pAnillo3;
+
+	do{
+		if (suma->ficha==1){
+			Totalrojo++;
+		}
+		if(suma->ficha==2){
+			Totalazul++;
+		}
+		suma=suma->sig;
+
+	}while(suma!=pAnillo3);
+
+	suma=pAnillo4;
+
+	do{
+		if (suma->ficha==1){
+			Totalrojo++;
+		}
+		if(suma->ficha==2){
+			Totalazul++;
+		}
+		suma=suma->sig;
+
+	}while(suma!=pAnillo4);
+
+	suma=pAnillo5;
+
+	do{
+		if (suma->ficha==1){
+			Totalrojo++;
+		}
+		if(suma->ficha==2){
+			Totalazul++;
+		}
+		suma=suma->sig;
+
+	}while(suma!=pAnillo5);
+
+}
+
+void revisar(){
+	Nodo*revisar=pAnillo5;
+	int valor=turno? 1:2;
+
+	if (revisar->ficha==revisar->sig->ficha and revisar->sig->ficha==revisar->sig->sig->ficha and revisar->sig->sig->ficha==revisar->sig->sig->sig->ficha){
+		cout<<"Hola, ganaste mahe "<<endl;
+	}
+
+
+}
 
 void imprimir(){
 	for (int i=0; i<=15; i++){
@@ -271,24 +353,27 @@ void dibujarAnillo(int radio, int casillas) {
 		line(Game,l3,l4,blanco,3);
 		}
 		circle(Game, casilla, 20, Color, CV_FILLED);
-		dibujarlineas();
+		//dibujarlineas();
 		r++;
 		aux=aux->sig;
 	}
 }
 
 
+
 void movimiento(Nodo*actual, Nodo*destino, int valor){
 	int saltarinxd;
 	string jugador;
 	Scalar Color;
-	if (actual->ficha==valor){
-		saltarinxd=actual->ficha;
-		destino->ficha= saltarinxd;
-		actual->ficha=0;
-		cout<<"Primer movimiento es..."<<Mov1->ficha<<endl;
-		cout<<"El segundo movimiento es..."<<Mov2->ficha<<endl;
-		turno=!turno;
+	if (actual->sig==destino or actual->ant== destino or actual->up==destino or actual->down==destino){
+		if (actual->ficha==valor and actual!=destino and actual->ficha!=destino->ficha){
+			saltarinxd=actual->ficha;
+			destino->ficha= saltarinxd;
+			actual->ficha=0;
+		//	cout<<"Primer movimiento es..."<<Mov1->ficha<<endl;
+		//	cout<<"El segundo movimiento es..."<<Mov2->ficha<<endl;
+			turno=!turno;
+		}
 	}
 	Mov1=NULL;
 	Mov2=NULL;
@@ -308,11 +393,15 @@ void movimiento(Nodo*actual, Nodo*destino, int valor){
 	imshow("Tablero", Game);
 	waitKey(0);
 	//setMouseCallback("Tablero",Onmouse);
+	revisar();
 
 }
 
 void Onmouse(int event, int x, int y, int, void*){
 	  Nodo*aux=NULL;
+	  	//Mov1=NULL;
+		//Mov2=NULL;
+
 	  int valor=0;
 	  	valor = turno? 1:2;
 		if (event==EVENT_LBUTTONUP){
@@ -989,12 +1078,14 @@ void Onmouse(int event, int x, int y, int, void*){
 						if (Mov1==NULL){
 				Mov1=aux;
 			}
-			else if (Mov2==NULL and Mov1!=NULL){
+			else if (Mov2==NULL and Mov1!=NULL ){
 				Mov2=aux;
 			}
 		}
 		if (aux!=NULL){
 			cout<<aux->ficha<<endl;
+			
+
 		}
 
 		if (Mov1!=NULL and Mov2!=NULL and Mov1->ficha!=0 ){
@@ -1002,6 +1093,7 @@ void Onmouse(int event, int x, int y, int, void*){
 			cout<<"El segundo movimiento es..."<<Mov2->ficha<<endl;
 			movimiento(Mov1, Mov2, valor);
 		}
+		
 	}
 }
 
@@ -1024,6 +1116,8 @@ void  DibujarTablero(){
 	Rect turno  (400,575,599,575);
 	rectangle(Game, turno ,Color,CV_FILLED);
 	putText(Game, "Es turno de "+jugador, Point(420, 595), FONT_HERSHEY_SIMPLEX, 0.6, negro);
+	putText(Game, "Piezas rojas: "+Totalrojo, Point(10, 16), FONT_HERSHEY_SIMPLEX, 0.3, blanco);
+	putText(Game, "Piezas azules: "+Totalazul, Point(0, 53), FONT_HERSHEY_SIMPLEX, 0.3, blanco);
 
 	imshow("Tablero", Game);
 	waitKey(0);
@@ -1035,6 +1129,8 @@ void  DibujarTablero(){
 void tableroinic(){
 	Tablero juego;
 	juego.llenar();
+	contar();
+
 
 	fill();
 	DibujarTablero();

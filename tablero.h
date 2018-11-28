@@ -58,7 +58,7 @@ Tablero::Tablero()
 		s2->down = s3;
 		s3->up = s2;
 		s2 = s2->sig;
-		s3 = s2->sig;
+		s3 = s3->sig;
 	}
 	// Este lazo une el tercer anillo con el cuarto
 	// por medio de 8 enlaces:
@@ -74,13 +74,19 @@ Tablero::Tablero()
 	// Conecciones anillo5 con anillo 4
 	s4=pAnillo4;
 	Nodo*s5=pAnillo5;
-	for (int i=1; i<=4;i++){
+	/*for (int i=1; i<=4;i++){
 		s5->up=s4;
 		s4->down=s5;
 		s4= s4->sig->sig;
 		s5= s5->sig;
-	}
+	}*/
+	do {
+		s4->down=s5;
+		s5->up=s4;
+		s5=s5->sig;
+		s4=s4->sig->sig;
 
+	}while(s5!=pAnillo5);
 	// Finalmente se hace que pInicio sea el
 	// puntero base de la estructura ya armada:
 	pInicio = pAnillo1;

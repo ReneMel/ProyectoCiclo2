@@ -25,7 +25,7 @@ string tempA;
 int posicion;
 String diez[10];
 //bool cerrar =false;
-bool endgame=false;
+//bool endgame=false;
 bool orden=false;
 bool turn=false;
 
@@ -284,6 +284,25 @@ void datos(){
 	}
 }
 
+void Dibujarreglas(Mat Ins){
+
+}
+
+void reglas(){
+	
+	namedWindow("Ventana");
+	Dibujarreglas(Ins);
+
+	while(true){
+		imshow("Ventana",Ins);
+			if((waitKey(1)& 0XFF)==27) 
+			break;
+				if (cerrar)
+			break;
+	}
+}
+
+
 
 //void Top10();
 
@@ -303,6 +322,9 @@ void Oldmouse(int event, int x, int y, int, void*){
 				else if (x>=75 && x< 314 && y>=250 && y <=324){
 					cerrar=true;
 					
+				}
+				else if (x>=75 && x< 314 && y>=335 && y <=395){
+					reglas();
 				}
 		}
 	}
@@ -405,6 +427,9 @@ void dibujarBmenu(Mat Menu){
 	Rect Exit (75,251,240,73);
 		rectangle(Menu,Exit,rojo,CV_FILLED); 
 		putText(Menu,"Exit",Point(150,305), FONT_HERSHEY_SIMPLEX,1.5,blanco);	
+	Rect Help (75,336,240,60);
+		rectangle(Menu,Help,rojo,CV_FILLED); 
+		putText(Menu,"Help",Point(150,380), FONT_HERSHEY_SIMPLEX,1.5,blanco);	
 }
 
 void Menu(){
