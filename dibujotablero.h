@@ -15,6 +15,7 @@ Scalar blanco = Scalar(255, 255, 255);
 Scalar amarillo= Scalar(204,255,255);
 Scalar Color;
 bool turno=true;
+bool restart=true;
 //int clicks=0;
 bool moves=false;
 bool Anillo5=false;
@@ -409,6 +410,42 @@ void movimiento(Nodo*actual, Nodo*destino, int valor){
 	waitKey(0);
 	//setMouseCallback("Tablero",Onmouse);
 	revisar();
+
+}
+
+void Reiniciar(){
+
+	turno=true;
+	restart=true;
+
+	Tablero juego;
+
+	juego.llenar();
+	contar();
+	fill();
+
+
+	dibujarAnillo(250, 16);
+	//imprimir();
+	dibujarAnillo(200, 16);
+	dibujarAnillo(150, 16);
+	dibujarAnillo(100, 8);
+	dibujarAnillo(50, 4);
+	//PutText
+	string jugador;
+	jugador=turno? "ROJO":"AZUL";
+	Color= turno? Scalar (0,0,255): Scalar (255,0,26);
+	Rect turno  (400,575,599,575);
+	rectangle(Game, turno ,Color,CV_FILLED);
+	putText(Game, "Es turno de "+jugador, Point(420, 595), FONT_HERSHEY_SIMPLEX, 0.6, negro);
+
+	Rect restart(0,575,115,575);
+	rectangle(Game, restart, Scalar(0,255,0), CV_FILLED);
+	putText(Game, "Reiniciar", Point(15, 595), FONT_HERSHEY_SIMPLEX, 0.6, negro);
+	
+	imshow("Tablero", Game);
+	waitKey(0);
+	//setMouseCallback("Tablero",Onmouse);
 
 }
 
@@ -1107,6 +1144,11 @@ void Onmouse(int event, int x, int y, int, void*){
 			cout<<"Primer movimiento es..."<<Mov1->ficha<<endl;
 			cout<<"El segundo movimiento es..."<<Mov2->ficha<<endl;
 			movimiento(Mov1, Mov2, valor);
+		}
+
+		if(0<=x && x<=115 && 575<=y && y<=599){
+			Reiniciar();
+
 		}		
 	}
 }
@@ -1130,6 +1172,10 @@ void  DibujarTablero(){
 	Rect turno  (400,575,599,575);
 	rectangle(Game, turno ,Color,CV_FILLED);
 	putText(Game, "Es turno de "+jugador, Point(420, 595), FONT_HERSHEY_SIMPLEX, 0.6, negro);
+
+	Rect restart(0,575,115,575);
+	rectangle(Game, restart, Scalar(0,255,0), CV_FILLED);
+	putText(Game, "Reiniciar", Point(15, 595), FONT_HERSHEY_SIMPLEX, 0.6, negro);
 	
 	imshow("Tablero", Game);
 	waitKey(0);
