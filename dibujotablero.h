@@ -19,7 +19,7 @@ struct Jugador
 string J1nombre,J2nombre,J1alias,J2alias;
 char aux;
 int m=1;
-bool cerrar = false; 
+bool cerrar = false;
 int tempW, tempLost, tempGame;
 string tempN,Njugador,Ajugador;
 string tempA;
@@ -36,7 +36,7 @@ Scalar blanco = Scalar(255, 255, 255);
 Scalar amarillo= Scalar(204,255,255);
 Scalar verde (0, 255, 0);
 Scalar rojo (0,0,255);
-Scalar azul (255,0,26);	
+Scalar azul (255,0,26);
 Scalar naranja(0,102,204);
 Scalar Color;
 bool turno=true;
@@ -108,7 +108,7 @@ void contar(){
 		suma=suma->sig;
 
 	}while(suma!=pAnillo2);
-	
+
 	suma=pAnillo3;
 
 	do{
@@ -162,7 +162,7 @@ void kakuempate(){
 
 //GANADOR NO FUNCIONA... ESTE ES DESVERGUE DE PEDRO...
 void ganador(){
-	
+
 		string winner="";
 		winner=(turno? J1nombre:J2nombre);
 	       Mat ganador(200, 600, CV_8UC3, Scalar(51,255,255));
@@ -170,7 +170,7 @@ void ganador(){
 	    imshow("Ganador", ganador);
 	    endgame=true;
 	    llenarname();
-    
+
 }
 
 void revisar(){
@@ -512,7 +512,7 @@ void Reiniciar(){
 	Rect restart(0,575,115,575);
 	rectangle(Game, restart, Scalar(0,255,0), CV_FILLED);
 	putText(Game, "Reiniciar", Point(15, 595), FONT_HERSHEY_SIMPLEX, 0.6, negro);
-	
+
 	imshow("Tablero", Game);
 	waitKey(0);
 	//setMouseCallback("Tablero",Onmouse);
@@ -1220,7 +1220,7 @@ void Onmouse(int event, int x, int y, int, void*){
 				cout<<"Conectado en dow con"<<aux->down->num<<endl;
 			}
 
-			
+
 
 		}
 
@@ -1233,7 +1233,7 @@ void Onmouse(int event, int x, int y, int, void*){
 		if(0<=x && x<=115 && 575<=y && y<=599){
 			Reiniciar();
 
-		}		
+		}
 	}
 }
 
@@ -1260,7 +1260,7 @@ void  DibujarTablero(){
 	Rect restart(0,575,115,575);
 	rectangle(Game, restart, Scalar(0,255,0), CV_FILLED);
 	putText(Game, "Reiniciar", Point(15, 595), FONT_HERSHEY_SIMPLEX, 0.6, negro);
-	
+
 	imshow("Tablero", Game);
 	waitKey(0);
 	setMouseCallback("Tablero",Onmouse);
@@ -1284,7 +1284,7 @@ void llenar(){
 		player.win[i]=0;
 		player.name[i]= "";
 		player.aka[i]= "";
-	}              
+	}
 }
 
 void Menu();
@@ -1308,8 +1308,8 @@ void leerDatos(){
 		diez[r]=score;
 		r++;
 		if(score.length()>=12) {
-			//cout<<score<<endl;	
-			
+			//cout<<score<<endl;
+
 			for (int i=0; i<5;i++){
 				Njugador+=score.at(i);
 			}
@@ -1328,7 +1328,7 @@ void leerDatos(){
 				f[i-17]=score.at(i);
 				juegos=atoi(f);
 			}
-				for (int i =0; i<200;i++){ 
+				for (int i =0; i<200;i++){
 
 					if (player.name[i].length()==0){
 						player.name[i]=Njugador;
@@ -1339,7 +1339,7 @@ void leerDatos(){
 						//cout <<player.win[i]<<endl;cout <<player.aka[i]<<endl;cout <<player.name[i]<<endl;
 						Njugador="";
 						Ajugador="";
-						
+
 						break;
 					}
 				}
@@ -1354,7 +1354,7 @@ void datostxt(){
 		if (player.name[i].length()!=0){
 			ostringstream os;
 			os<<player.win[n];
-		
+
 			Datos<<player.name[n]+"|"<<player.aka[n]+"|"<<os.str()+"\r\n";
 			n++;}
 
@@ -1427,7 +1427,7 @@ void llenarname(){
 				break;
 		}
 	}
-	
+
 }
 
 
@@ -1456,7 +1456,7 @@ void DibujarTop(){
 		putText(Top, player.aka[i], Point(55,y),FONT_HERSHEY_PLAIN, 1.1, blanco);
 		//putText(Top, os.str()+" pts.", Point(90,y), FONT_HERSHEY_PLAIN, 1.1, blanco);
 		y+=25;
-	}	
+	}
 	}
 	int y2=95;
 	for (int i=0; i<10; i++){
@@ -1488,22 +1488,22 @@ void DibujarTop(){
 	}
 
 
-} 
+}
 
 void Dibujarinscrip(Mat Ins){
 	putText(Ins,"Jugador 1", Point(10,30), FONT_HERSHEY_SIMPLEX,0.7,azul);
-	
+
 	putText(Ins,"Nombre: ", Point(10,85), FONT_HERSHEY_SIMPLEX,0.7,azul);
-		Rect recNamae1 (110,65,275,30); 
+		Rect recNamae1 (110,65,275,30);
 		rectangle(Ins, recNamae1,blanco,CV_FILLED);
 	putText(Ins,"Alias: ", Point(10,145), FONT_HERSHEY_SIMPLEX,0.7,azul);
 		Rect recAlias1 (110,125,275,30);
 		rectangle(Ins,recAlias1,blanco,CV_FILLED);
 
 	putText(Ins,"Jugador 2", Point(10,210), FONT_HERSHEY_SIMPLEX,0.7,naranja);
-	
+
 	putText(Ins,"Nombre: ", Point(10,265), FONT_HERSHEY_SIMPLEX,0.7,naranja);
-		Rect recNamae2 (110,245,275,30); 
+		Rect recNamae2 (110,245,275,30);
 		rectangle(Ins, recNamae2,blanco,CV_FILLED);
 	putText(Ins,"Alias: ", Point(10,325), FONT_HERSHEY_SIMPLEX,0.7,naranja);
 		Rect recAlias2 (110,305,275,30);
@@ -1516,31 +1516,59 @@ void Dibujarinscrip(Mat Ins){
 
 
 void datos(){
-	
+
 	namedWindow("Ventana");
 	Dibujarinscrip(Ins);
 
 	while(true){
 		imshow("Ventana",Ins);
-			if((waitKey(1)& 0XFF)==27) 
+			if((waitKey(1)& 0XFF)==27)
 			break;
 				if (cerrar)
 			break;
 	}
 }
+void returnMenu();
+
+
 
 void Dibujarreglas(Mat Ins){
-
+	Point punto(10, 30);
+	Point punto1(10, 70);
+	Point punto1a(10, 85);
+	Point punto1b(10, 100);
+	Point punto1c(10, 115);
+	Point punto2(10,145 );
+	Point punto3(10, 180);
+	Point punto4(10, 210);
+	Point punto4a(10, 225);
+	Point punto4b(10, 240);
+	Point punto5(10, 285);
+	Point punto5a(35, 300);
+	Scalar negro = Scalar(0, 0, 0);
+	float scala=0.5;
+	putText(Ins,  "OBJETIVO DEL JUEGO:", punto, FONT_HERSHEY_SIMPLEX, scala, negro);
+	putText(Ins,  "Puedes Ganar llenando los cuatro espacios del  ", punto1, FONT_HERSHEY_SIMPLEX, scala, negro);
+	putText(Ins,  "medio con tus piezas o eliminando las piezas ", punto1a, FONT_HERSHEY_SIMPLEX, scala, negro);
+	putText(Ins,  "de tu oponente, lo suficiente para que el ", punto1b, FONT_HERSHEY_SIMPLEX, scala, negro);
+	putText(Ins,  "no pueda completar  el circulo de en medio.", punto1c, FONT_HERSHEY_SIMPLEX, scala, negro);
+	putText(Ins,  "REGLAS:", punto2, FONT_HERSHEY_SIMPLEX, scala, negro);
+	putText(Ins,  "1) Las piezas rojas siempre mueven primero.", punto3, FONT_HERSHEY_SIMPLEX, scala, negro);
+	putText(Ins,  "2)Las piezas pueden moverse solo alrededor del", punto4, FONT_HERSHEY_SIMPLEX, scala, negro);
+	putText(Ins,  "circulo (con las agujas del reloj o encontra de", punto4a, FONT_HERSHEY_SIMPLEX, scala, negro);
+	putText(Ins,  "las agujas del reloj) y hacia dentro del circulo.", punto4b, FONT_HERSHEY_SIMPLEX, scala, negro);
+	putText(Ins,  "3) Las piezas solo pueden moverse", punto5, FONT_HERSHEY_SIMPLEX, scala, negro);
+		putText(Ins,"una vez por turno.", punto5a, FONT_HERSHEY_SIMPLEX, scala, negro);
 }
 
 void reglas(){
-	
+
 	namedWindow("Ventana");
 	Dibujarreglas(Ins);
 
 	while(true){
 		imshow("Ventana",Ins);
-			if((waitKey(1)& 0XFF)==27) 
+			if((waitKey(1)& 0XFF)==27)
 			break;
 				if (cerrar)
 			break;
@@ -1554,7 +1582,7 @@ void reglas(){
 void Oldmouse(int event, int x, int y, int, void*){
 	if (m==1){
 		if (event==EVENT_LBUTTONUP){
-			
+
 				if (x >= 75 && x < 314 && y >= 75 && y <=147) {
 					m=2;
 					datos();
@@ -1565,7 +1593,7 @@ void Oldmouse(int event, int x, int y, int, void*){
 				}
 				else if (x>=75 && x< 314 && y>=250 && y <=324){
 					cerrar=true;
-					
+
 				}
 				else if (x>=75 && x< 314 && y>=335 && y <=395){
 					reglas();
@@ -1578,7 +1606,7 @@ void Oldmouse(int event, int x, int y, int, void*){
 				//cout<<"cuadro de nombre"<<endl;
 				int cont1=0,cont2=0,cont3=0,cont4=0;
 				if (waitKey()){
-					
+
 
 					while (true && cont1==0){
 						aux=waitKey();
@@ -1589,13 +1617,13 @@ void Oldmouse(int event, int x, int y, int, void*){
 							J1nombre+=putchar(toupper(aux));
 							putText(Ins,"-"+J1nombre,Point(115,90), FONT_HERSHEY_SIMPLEX,1,negro);
 							//cout<<J1nombre<<endl;
-						}	
-						
+						}
+
 					}
 				}
 			else if (x>=110 && x<383 && y>=125 && y<=155 && J1nombre.length()!=0)	{
 				//cout<<"cuadro de alias"<<endl;
-				
+
 					if (waitKey()){
 						while (true){
 							aux=waitKey();
@@ -1605,15 +1633,15 @@ void Oldmouse(int event, int x, int y, int, void*){
 							J1alias+=putchar(toupper(aux));
 							putText(Ins,"-"+J1alias,Point(115,150), FONT_HERSHEY_SIMPLEX,1,negro);
 							//cout<<J1alias<<endl;
-					
-							
+
+
 
 				}
-				}		
+				}
 							}
 			else if(x>=110 && x<383 && y>=245 && y<=275 && J1nombre.length()!=0 && J1alias.length()!=0){
 				//cout<<"cuadro de nombre"<<endl;
-				
+
 				if (waitKey()){
 					while (true){
 						aux=waitKey();
@@ -1623,26 +1651,26 @@ void Oldmouse(int event, int x, int y, int, void*){
 							J2nombre+=putchar(toupper(aux));
 							putText(Ins,"-"+J2nombre,Point(115,270), FONT_HERSHEY_SIMPLEX,1,negro);
 							//cout<<J2nombre<<endl;
-							
-					}}}	
+
+					}}}
 			else if (x>=110 && x<383 && y>=305 && y<=335 && J1nombre.length()!=0 && J1alias.length()!=0 && J2nombre.length())	{
 				//cout<<"cuadro de alias"<<endl;
-				
+
 					if (waitKey()){
 						while (true){
 							aux=waitKey();
 							if(J2alias.length()==5 or aux==13)break;
 
-							
+
 							J2alias+=putchar(toupper(aux));
 							putText(Ins,"-"+J2alias,Point(115,330), FONT_HERSHEY_SIMPLEX,1,negro);
 							//cout<<J1alias<<endl;
-							
+
 
 				}
-				}	
 				}
-		else if (x>=120 && x<=355 && y>=355 && y<=390 && J1nombre.length()!=0 && J2nombre.length()!=0 && J1alias.length()!=0 && J2alias.length()!=0 )	
+				}
+		else if (x>=120 && x<=355 && y>=355 && y<=390 && J1nombre.length()!=0 && J2nombre.length()!=0 && J1alias.length()!=0 && J2alias.length()!=0 )
 			{
 					m=0;
 					//cerrar=true;
@@ -1662,18 +1690,18 @@ void Oldmouse(int event, int x, int y, int, void*){
 void dibujarBmenu(Mat Menu){
 	putText(Menu, "The Right Moves", Point(30,50), FONT_HERSHEY_SCRIPT_SIMPLEX, 1.5, Scalar(0,128,255));
     //imshow("Empate", Menu);
-	
-	Rect recPlay (75,75,240,73); 
+
+	Rect recPlay (75,75,240,73);
 		rectangle(Menu, recPlay,rojo, CV_FILLED);
 		putText(Menu,"Jugar!",Point(126,120), FONT_HERSHEY_SIMPLEX,1.5,blanco);
-	Rect recScore (75,158,240,73);		rectangle(Menu, recScore,rojo,CV_FILLED); 
+	Rect recScore (75,158,240,73);		rectangle(Menu, recScore,rojo,CV_FILLED);
 		putText(Menu,"Puntuacion",Point(81,210), FONT_HERSHEY_SIMPLEX,1.3,blanco);
 	Rect Exit (75,251,240,73);
-		rectangle(Menu,Exit,rojo,CV_FILLED); 
-		putText(Menu,"Exit",Point(150,305), FONT_HERSHEY_SIMPLEX,1.5,blanco);	
+		rectangle(Menu,Exit,rojo,CV_FILLED);
+		putText(Menu,"Exit",Point(150,305), FONT_HERSHEY_SIMPLEX,1.5,blanco);
 	Rect Help (75,336,240,60);
-		rectangle(Menu,Help,rojo,CV_FILLED); 
-		putText(Menu,"Help",Point(150,380), FONT_HERSHEY_SIMPLEX,1.5,blanco);	
+		rectangle(Menu,Help,rojo,CV_FILLED);
+		putText(Menu,"Help",Point(150,380), FONT_HERSHEY_SIMPLEX,1.5,blanco);
 }
 
 void Menu(){
@@ -1687,13 +1715,14 @@ void Menu(){
 	while (m==1)
 	{
 		imshow("Ventana", Menu);
-		if (waitKey(5) == 27) 
+		if (waitKey(5) == 27)
 			break;
 		if (cerrar)
 			break;
-		
+
 	}
 }
+
 
 void inic()
 {
@@ -1714,18 +1743,18 @@ void inic()
 	while (m==1)
 	{
 		imshow("Ventana", Menu);
-		if (waitKey(5) == 27) 
+		if (waitKey(5) == 27)
 			break;
 		if (cerrar)
 			break;
-		
+
 	}
 }*/
 void Top10(){
 	namedWindow("Ventana");
 
 	setMouseCallback("Ventana", Oldmouse);
-	DibujarTop(); 
+	DibujarTop();
 
 	while (true )
 	{
@@ -1738,13 +1767,13 @@ void Top10(){
 }
 /*
 void datos(){
-	
+
 	namedWindow("Ventana");
 	Dibujarinscrip(Ins);
 
 	while(true){
 		imshow("Ventana",Ins);
-			if((waitKey(1)& 0XFF)==27) 
+			if((waitKey(1)& 0XFF)==27)
 			break;
 				if (cerrar)
 			break;

@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream:archivos cpp/menu.h
-//#include "dibujotablero.h" 
-=======
 #include "dibujotablero.h"
->>>>>>> Stashed changes:menu.h
 #include <opencv2/opencv.hpp>
 #include <iostream>
 #include <string>
@@ -188,26 +184,7 @@ void llenarname(){
 
 }
 
-void kakuempate(){
-	Mat Empate(200, 500, CV_8UC3, Scalar(51,255,255));
-    putText(Empate, "-Empate-", Point(5, 100), FONT_HERSHEY_SIMPLEX, 3, verde);
-    imshow("Empate", Empate);
 
-    //endgame = true;
-}
-
-void ganador(){
-	if (endgame ){
-		string winner="";
-		winner=(turn? J1nombre:J2nombre);
-	       Mat ganador(200, 600, CV_8UC3, Scalar(51,255,255));
-	    putText(ganador, "El ganador es: "+winner, Point(5, 100), FONT_HERSHEY_SIMPLEX, 1.6, rojo);
-	    imshow("Ganador", ganador);
-	    //endgame=true;
-	    llenarname();
-	}
-    
-}
 
 void DibujarTop(){
 	Rect  titulo (90,10,210,30);
@@ -308,21 +285,7 @@ void datos(){
 }
 
 void Dibujarreglas(Mat Ins){
-Point punto(10, 30);
-Point punto1(10, 70);
-Point punto2(10,110 );
-Point punto3(10, 150);
-Point punto4(10, 200);
-Point punto5(10, 250);
-Scalar negro = Scalar(0, 0, 0);
-int scala=1;
-putText(Ins,  "Objetivo del Juego:", punto, FONT_HERSHEY_SIMPLEX, scala, negro);
-putText(Ins,  "Puedes Ganar llenando los cuatro espacios del medio con tus piezas o eliminando las piezas de tu oponentelo suficiente para que no pueda completar el circulo de en medio ", punto1, FONT_HERSHEY_SIMPLEX, scala, negro);
-putText(Ins,  "REGLAS:", punto2, FONT_HERSHEY_SIMPLEX, scala, negro);
-putText(Ins,  "1) Las piezas rojas siempre mueven primero", punto3, FONT_HERSHEY_SIMPLEX, scala, negro);
-putText(Ins,  "2) Las piezas pueden moverse solo alrededor del circulo(con las agujas del reloj o encontra de las agujas del reloj) y hacia dentro del circulo", punto4, FONT_HERSHEY_SIMPLEX, scala, negro);
-putText(Ins,  "3) Las piezas solo pueden moverseuna vez por turno ", punto5, FONT_HERSHEY_SIMPLEX, scala, negro);
-
+	
 }
 
 void reglas(){
@@ -350,6 +313,7 @@ void Oldmouse(int event, int x, int y, int, void*){
 				if (x >= 75 && x < 314 && y >= 75 && y <=147) {
 					m=2;
 					datos();
+
 				}
 				else if(x>=75 && x< 314 && y>=155 && y <=230){
 					m=3;
