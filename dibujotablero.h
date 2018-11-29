@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cmath>
 #include <string>
+#include <fstream>
 using namespace std;
 using namespace cv;
 
@@ -434,7 +435,7 @@ void dibujarAnillo(int radio, int casillas) {
 
 
 
-void movimiento(Nodo*actual, Nodo*destino, int valor){
+/*void movimiento(Nodo*actual, Nodo*destino, int valor){
 	int saltarinxd;
 	string jugador;
 	Scalar Color;
@@ -481,6 +482,56 @@ void movimiento(Nodo*actual, Nodo*destino, int valor){
 	revisar();
 
 
+}*/
+
+void movimiento(Nodo*actual, Nodo*destino, int valor){
+	int saltarinxd;
+	string jugador;
+	Scalar Color;
+
+	if (actual->sig==destino or actual->ant==destino or actual->up==destino or actual->down==destino)
+	{
+		if (actual->ficha==valor and actual!=destino and actual->ficha!=destino->ficha)
+		{
+			saltarinxd=actual->ficha;
+			destino->ficha=saltarinxd;
+			actual->ficha=0;
+		//	cout<<"Primer movimiento es..."<<Mov1->ficha<<endl;
+		//	cout<<"El segundo movimiento es..."<<Mov2->ficha<<endl;
+			turno=!turno;
+		}
+	}
+	else if (destino->up==actual->down and destino->up->ficha!=0 and actual->ficha!=destino->up->ficha and actual->ficha==valor)
+	{
+		saltarinxd=actual->ficha;
+		actual->down->ficha=0;
+		actual->ficha=0;
+		destino->ficha=saltarinxd;
+		if (destino->down->ficha==0)
+		{
+			turno=!turno;
+		}
+	}
+	//kakuempate();
+	Mov1=NULL;
+	Mov2=NULL;
+	dibujarAnillo(250,16);
+	//imprimir();
+	dibujarAnillo(200,16);
+	dibujarAnillo(150,16);
+	dibujarAnillo(100,8);
+	dibujarAnillo(50,4);
+	jugador=turno? "ROJO":"AZUL";
+	Color=turno? Scalar(0,0,255): Scalar(255,0,26);
+	Rect turno (400,575,599,575);
+	rectangle(Game,turno,Color,CV_FILLED);
+	putText(Game, "Es turno de "+jugador, Point(420,595), FONT_HERSHEY_SIMPLEX, 0.6, negro);
+	contar();
+
+	imshow("Tablero", Game);
+	waitKey(0);
+	//setMouseCallback("Tablero",Onmouse);
+	revisar();
 }
 
 void Reiniciar(){
