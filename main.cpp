@@ -1,4 +1,4 @@
-//#include "tablero.h"
+//git #include "tablero.h"
 #include "dibujotablero.h"
 //#include "menu.h"
 #include <opencv2/opencv.hpp>

@@ -26,8 +26,7 @@ string tempN,Njugador,Ajugador;
 string tempA;
 int posicion;
 String diez[10];
-//bool cerrar =false;
-//bool endgame=false;
+bool anillo5=false;
 bool orden=false;
 //bool turn=false;
 
@@ -48,6 +47,7 @@ bool moves=false;
 bool Anillo5=false;
 //Scalar rojo= Scalar (0,0,255);
 //Scalar azul= Scalar (255,0,26);
+Mat Rules(400,400, CV_8UC3, Scalar(204,204,255));
 Mat Game(600, 600, CV_8UC3, celeste);
 int Anillo1X[15];
 int Anillo1Y[15];
@@ -179,7 +179,7 @@ void revisar(){
 	int valor=turno? 1:2;
 
 	if (revisar->ficha==revisar->sig->ficha and revisar->sig->ficha==revisar->sig->sig->ficha and revisar->sig->sig->ficha==revisar->sig->sig->sig->ficha){
-		cout<<"Hola, ganaste mahe "<<endl;
+		//cout<<"Hola, ganaste mahe "<<endl;
 		//endgame=true;
 		ganador();
 	}
@@ -501,13 +501,14 @@ void movimiento(Nodo*actual, Nodo*destino, int valor){
 			turno=!turno;
 		}
 	}
+
 	else if (destino->up==actual->down and destino->up->ficha!=0 and actual->ficha!=destino->up->ficha and actual->ficha==valor)
 	{
 		saltarinxd=actual->ficha;
 		actual->down->ficha=0;
 		actual->ficha=0;
 		destino->ficha=saltarinxd;
-		if (destino->down->ficha==0)
+		if (destino->down->ficha==0 and destino->down->ficha!=valor)
 		{
 			turno=!turno;
 		}
@@ -580,7 +581,7 @@ void Onmouse(int event, int x, int y, int, void*){
 		if (event==EVENT_LBUTTONUP){
 		//PREPARANDO CIRCULOS DE EL SEGUNDO ANILLO
 		if (x >= Anillo1X[0]-20 && x < Anillo1X[0]+20 && y >= Anillo1Y[0]-20 && y <=Anillo1Y[0]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux= pAnillo1;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -597,7 +598,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo1X[1]-20 && x < Anillo1X[1]+20 && y >= Anillo1Y[1]-20 && y <=Anillo1Y[1]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo1 -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -608,7 +609,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo1X[2]-20 && x < Anillo1X[2]+20 && y >= Anillo1Y[2]-20 && y <=Anillo1Y[2]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo1 -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -619,7 +620,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo1X[3]-20 && x < Anillo1X[3]+20 && y >= Anillo1Y[3]-20 && y <=Anillo1Y[3]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo1 -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -630,7 +631,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo1X[4]-20 && x < Anillo1X[4]+20 && y >= Anillo1Y[4]-20 && y <=Anillo1Y[4]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo1 -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -641,7 +642,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo1X[5]-20 && x < Anillo1X[5]+20 && y >= Anillo1Y[5]-20 && y <=Anillo1Y[5]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo1 -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -652,7 +653,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo1X[6]-20 && x < Anillo1X[6]+20 && y >= Anillo1Y[6]-20 && y <=Anillo1Y[6]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo1 -> sig -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -663,7 +664,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo1X[7]-20 && x < Anillo1X[7]+20 && y >= Anillo1Y[7]-20 && y <=Anillo1Y[7]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo1 -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -674,7 +675,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo1X[8]-20 && x < Anillo1X[8]+20 && y >= Anillo1Y[8]-20 && y <=Anillo1Y[8]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo1 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -685,7 +686,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo1X[9]-20 && x < Anillo1X[9]+20 && y >= Anillo1Y[9]-20 && y <=Anillo1Y[9]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo1 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -696,7 +697,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo1X[10]-20 && x < Anillo1X[10]+20 && y >= Anillo1Y[10]-20 && y <=Anillo1Y[10]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo1 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -707,7 +708,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo1X[11]-20 && x < Anillo1X[11]+20 && y >= Anillo1Y[11]-20 && y <=Anillo1Y[11]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo1 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -718,7 +719,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo1X[12]-20 && x < Anillo1X[12]+20 && y >= Anillo1Y[12]-20 && y <=Anillo1Y[12]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo1 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -729,7 +730,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo1X[13]-20 && x < Anillo1X[13]+20 && y >= Anillo1Y[13]-20 && y <=Anillo1Y[13]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo1 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -740,7 +741,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo1X[14]-20 && x < Anillo1X[14]+20 && y >= Anillo1Y[14]-20 && y <=Anillo1Y[14]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo1 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -751,7 +752,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo1X[15]-20 && x < Anillo1X[15]+20 && y >= Anillo1Y[15]-20 && y <=Anillo1Y[15]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo1 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -763,7 +764,7 @@ void Onmouse(int event, int x, int y, int, void*){
 		}
 		//PREPARANDO CIRCULOS DE EL SEGUNDO ANILLO
 		if (x >= Anillo2X[0]-20 && x < Anillo2X[0]+20 && y >= Anillo2Y[0]-20 && y <=Anillo2Y[0]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			//Nodo*aux;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -775,7 +776,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo2X[1]-20 && x < Anillo2X[1]+20 && y >= Anillo2Y[1]-20 && y <=Anillo2Y[1]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo2 -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -786,7 +787,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo2X[2]-20 && x < Anillo2X[2]+20 && y >= Anillo2Y[2]-20 && y <=Anillo2Y[2]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo2 -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -797,7 +798,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo2X[3]-20 && x < Anillo2X[3]+20 && y >= Anillo2Y[3]-20 && y <=Anillo2Y[3]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo2 -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -808,7 +809,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo2X[4]-20 && x < Anillo2X[4]+20 && y >= Anillo2Y[4]-20 && y <=Anillo2Y[4]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo2 -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -819,7 +820,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo2X[5]-20 && x < Anillo2X[5]+20 && y >= Anillo2Y[5]-20 && y <=Anillo2Y[5]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo2 -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -830,7 +831,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo2X[6]-20 && x < Anillo2X[6]+20 && y >= Anillo2Y[6]-20 && y <=Anillo2Y[6]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo2 -> sig -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -841,7 +842,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo2X[7]-20 && x < Anillo2X[7]+20 && y >= Anillo2Y[7]-20 && y <=Anillo2Y[7]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo2 -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -852,7 +853,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo2X[8]-20 && x < Anillo2X[8]+20 && y >= Anillo2Y[8]-20 && y <=Anillo2Y[8]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo2 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -863,7 +864,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo2X[9]-20 && x < Anillo2X[9]+20 && y >= Anillo2Y[9]-20 && y <=Anillo2Y[9]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo2 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -874,7 +875,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo2X[10]-20 && x < Anillo2X[10]+20 && y >= Anillo2Y[10]-20 && y <=Anillo2Y[10]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo2 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -885,7 +886,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo2X[11]-20 && x < Anillo2X[11]+20 && y >= Anillo2Y[11]-20 && y <=Anillo2Y[11]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo2 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -896,7 +897,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo2X[12]-20 && x < Anillo2X[12]+20 && y >= Anillo2Y[12]-20 && y <=Anillo2Y[12]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo2 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -907,7 +908,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo2X[13]-20 && x < Anillo2X[13]+20 && y >= Anillo2Y[13]-20 && y <=Anillo2Y[13]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo2 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -918,7 +919,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo2X[14]-20 && x < Anillo2X[14]+20 && y >= Anillo2Y[14]-20 && y <=Anillo2Y[14]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo2 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -929,7 +930,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo2X[15]-20 && x < Anillo2X[15]+20 && y >= Anillo2Y[15]-20 && y <=Anillo2Y[15]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo2 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -941,7 +942,7 @@ void Onmouse(int event, int x, int y, int, void*){
 		}
 		//ANILLO 3
 		if (x >= Anillo3X[0]-20 && x < Anillo3X[0]+20 && y >= Anillo3Y[0]-20 && y <=Anillo3Y[0]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			//Nodo*aux;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -953,7 +954,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo3X[1]-20 && x < Anillo3X[1]+20 && y >= Anillo3Y[1]-20 && y <=Anillo3Y[1]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo3 -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -964,7 +965,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo3X[2]-20 && x < Anillo3X[2]+20 && y >= Anillo3Y[2]-20 && y <=Anillo3Y[2]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo3 -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -975,7 +976,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo3X[3]-20 && x < Anillo3X[3]+20 && y >= Anillo3Y[3]-20 && y <=Anillo3Y[3]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo3 -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -986,7 +987,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo3X[4]-20 && x < Anillo3X[4]+20 && y >= Anillo3Y[4]-20 && y <=Anillo3Y[4]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo3 -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -997,7 +998,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo3X[5]-20 && x < Anillo3X[5]+20 && y >= Anillo3Y[5]-20 && y <=Anillo3Y[5]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo3 -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -1008,7 +1009,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo3X[6]-20 && x < Anillo3X[6]+20 && y >= Anillo3Y[6]-20 && y <=Anillo3Y[6]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo3 -> sig -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -1019,7 +1020,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo3X[7]-20 && x < Anillo3X[7]+20 && y >= Anillo3Y[7]-20 && y <=Anillo3Y[7]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo3 -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -1030,7 +1031,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo3X[8]-20 && x < Anillo3X[8]+20 && y >= Anillo3Y[8]-20 && y <=Anillo3Y[8]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo3 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -1041,7 +1042,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo3X[9]-20 && x < Anillo3X[9]+20 && y >= Anillo3Y[9]-20 && y <=Anillo3Y[9]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo3 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -1052,7 +1053,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo3X[10]-20 && x < Anillo3X[10]+20 && y >= Anillo3Y[10]-20 && y <=Anillo3Y[10]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo3 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
 			if (Mov1==NULL){
 				Mov1=aux;
@@ -1063,7 +1064,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo3X[11]-20 && x < Anillo3X[11]+20 && y >= Anillo3Y[11]-20 && y <=Anillo3Y[11]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo3 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -1074,7 +1075,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo3X[12]-20 && x < Anillo3X[12]+20 && y >= Anillo3Y[12]-20 && y <=Anillo3Y[12]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo3 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -1085,7 +1086,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo3X[13]-20 && x < Anillo3X[13]+20 && y >= Anillo3Y[13]-20 && y <=Anillo3Y[13]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo3 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -1096,7 +1097,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo3X[14]-20 && x < Anillo3X[14]+20 && y >= Anillo3Y[14]-20 && y <=Anillo3Y[14]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo3 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -1107,7 +1108,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo3X[15]-20 && x < Anillo3X[15]+20 && y >= Anillo3Y[15]-20 && y <=Anillo3Y[15]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo3 -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -1121,7 +1122,7 @@ void Onmouse(int event, int x, int y, int, void*){
 		// ANILLO 4
 
 		if (x >= Anillo4X[0]-20 && x < Anillo4X[0]+20 && y >= Anillo4Y[0]-20 && y <=Anillo4Y[0]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			//Nodo*aux;
 			aux = pAnillo4;
 						if (Mov1==NULL){
@@ -1134,7 +1135,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo4X[1]-20 && x < Anillo4X[1]+20 && y >= Anillo4Y[1]-20 && y <=Anillo4Y[1]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo4 -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -1145,7 +1146,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo4X[2]-20 && x < Anillo4X[2]+20 && y >= Anillo4Y[2]-20 && y <=Anillo4Y[2]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo4 -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -1156,7 +1157,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo4X[3]-20 && x < Anillo4X[3]+20 && y >= Anillo4Y[3]-20 && y <=Anillo4Y[3]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo4 -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -1167,7 +1168,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo4X[4]-20 && x < Anillo4X[4]+20 && y >= Anillo4Y[4]-20 && y <=Anillo4Y[4]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo4 -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -1178,7 +1179,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo4X[5]-20 && x < Anillo4X[5]+20 && y >= Anillo4Y[5]-20 && y <=Anillo4Y[5]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo4 -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -1189,7 +1190,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo4X[6]-20 && x < Anillo4X[6]+20 && y >= Anillo4Y[6]-20 && y <=Anillo4Y[6]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo4 -> sig -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -1200,7 +1201,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo4X[7]-20 && x < Anillo4X[7]+20 && y >= Anillo4Y[7]-20 && y <=Anillo4Y[7]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo4 -> sig -> sig -> sig -> sig -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -1213,7 +1214,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		//ANILLO 5
 		if (x >= Anillo5X[0]-20 && x < Anillo5X[0]+20 && y >= Anillo5Y[0]-20 && y <=Anillo5Y[0]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			//Nodo*aux;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -1224,7 +1225,7 @@ void Onmouse(int event, int x, int y, int, void*){
 			aux = pAnillo5;
 		}
 		if (x >= Anillo5X[1]-20 && x < Anillo5X[1]+20 && y >= Anillo5Y[1]-20 && y <=Anillo5Y[1]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo5 -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -1235,7 +1236,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo5X[2]-20 && x < Anillo5X[2]+20 && y >= Anillo5Y[2]-20 && y <=Anillo5Y[2]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo5 -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -1246,7 +1247,7 @@ void Onmouse(int event, int x, int y, int, void*){
 
 		}
 		if (x >= Anillo5X[3]-20 && x < Anillo5X[3]+20 && y >= Anillo5Y[3]-20 && y <=Anillo5Y[3]+20){
-			cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
+			//cout<<"Click detectado en el punto ("<<x<<","<<y<<")"<<endl;
 			aux=pAnillo5 -> sig -> sig -> sig;
 						if (Mov1==NULL){
 				Mov1=aux;
@@ -1255,7 +1256,7 @@ void Onmouse(int event, int x, int y, int, void*){
 				Mov2=aux;
 			}
 		}
-		if (aux!=NULL){
+		/*if (aux!=NULL){
 			cout<<aux->ficha<<endl;
 			cout<<aux->num<<endl;
 			if (aux->sig!=NULL){
@@ -1273,18 +1274,20 @@ void Onmouse(int event, int x, int y, int, void*){
 
 
 
-		}
+		}*/
 
 		if (Mov1!=NULL and Mov2!=NULL and Mov1->ficha!=0 ){
-			cout<<"Primer movimiento es..."<<Mov1->ficha<<endl;
-			cout<<"El segundo movimiento es..."<<Mov2->ficha<<endl;
+			//cout<<"Primer movimiento es..."<<Mov1->ficha<<endl;
+			//cout<<"El segundo movimiento es..."<<Mov2->ficha<<endl;
 			movimiento(Mov1, Mov2, valor);
 		}
 
 		if(0<=x && x<=115 && 575<=y && y<=599){
 			Reiniciar();
-
 		}
+
+
+
 	}
 }
 
@@ -1542,6 +1545,8 @@ void DibujarTop(){
 }
 
 void Dibujarinscrip(Mat Ins){
+
+	//Rect Hola()
 	putText(Ins,"Jugador 1", Point(10,30), FONT_HERSHEY_SIMPLEX,0.7,azul);
 
 	putText(Ins,"Nombre: ", Point(10,85), FONT_HERSHEY_SIMPLEX,0.7,azul);
@@ -1583,7 +1588,7 @@ void returnMenu();
 
 
 
-void Dibujarreglas(Mat Ins){
+void Dibujarreglas(Mat Rules){
 	Point punto(10, 30);
 	Point punto1(10, 70);
 	Point punto1a(10, 85);
@@ -1598,27 +1603,33 @@ void Dibujarreglas(Mat Ins){
 	Point punto5a(35, 300);
 	Scalar negro = Scalar(0, 0, 0);
 	float scala=0.5;
-	putText(Ins,  "OBJETIVO DEL JUEGO:", punto, FONT_HERSHEY_SIMPLEX, scala, negro);
-	putText(Ins,  "Puedes Ganar llenando los cuatro espacios del  ", punto1, FONT_HERSHEY_SIMPLEX, scala, negro);
-	putText(Ins,  "medio con tus piezas o eliminando las piezas ", punto1a, FONT_HERSHEY_SIMPLEX, scala, negro);
-	putText(Ins,  "de tu oponente, lo suficiente para que el ", punto1b, FONT_HERSHEY_SIMPLEX, scala, negro);
-	putText(Ins,  "no pueda completar  el circulo de en medio.", punto1c, FONT_HERSHEY_SIMPLEX, scala, negro);
-	putText(Ins,  "REGLAS:", punto2, FONT_HERSHEY_SIMPLEX, scala, negro);
-	putText(Ins,  "1) Las piezas rojas siempre mueven primero.", punto3, FONT_HERSHEY_SIMPLEX, scala, negro);
-	putText(Ins,  "2)Las piezas pueden moverse solo alrededor del", punto4, FONT_HERSHEY_SIMPLEX, scala, negro);
-	putText(Ins,  "circulo (con las agujas del reloj o encontra de", punto4a, FONT_HERSHEY_SIMPLEX, scala, negro);
-	putText(Ins,  "las agujas del reloj) y hacia dentro del circulo.", punto4b, FONT_HERSHEY_SIMPLEX, scala, negro);
-	putText(Ins,  "3) Las piezas solo pueden moverse", punto5, FONT_HERSHEY_SIMPLEX, scala, negro);
-		putText(Ins,"una vez por turno.", punto5a, FONT_HERSHEY_SIMPLEX, scala, negro);
+	putText(Rules,  "OBJETIVO DEL JUEGO:", punto, FONT_HERSHEY_SIMPLEX, scala, negro);
+	putText(Rules,  "Puedes Ganar llenando los cuatro espacios del  ", punto1, FONT_HERSHEY_SIMPLEX, scala, negro);
+	putText(Rules,  "medio con tus piezas o eliminando las piezas ", punto1a, FONT_HERSHEY_SIMPLEX, scala, negro);
+	putText(Rules,  "de tu oponente, lo suficiente para que el ", punto1b, FONT_HERSHEY_SIMPLEX, scala, negro);
+	putText(Rules,  "no pueda completar  el circulo de en medio.", punto1c, FONT_HERSHEY_SIMPLEX, scala, negro);
+	putText(Rules,  "REGLAS:", punto2, FONT_HERSHEY_SIMPLEX, scala, negro);
+	putText(Rules,  "1) Las piezas rojas siempre mueven primero.", punto3, FONT_HERSHEY_SIMPLEX, scala, negro);
+	putText(Rules,  "2)Las piezas pueden moverse solo alrededor del", punto4, FONT_HERSHEY_SIMPLEX, scala, negro);
+	putText(Rules,  "circulo (con las agujas del reloj o encontra de", punto4a, FONT_HERSHEY_SIMPLEX, scala, negro);
+	putText(Rules,  "las agujas del reloj) y hacia dentro del circulo.", punto4b, FONT_HERSHEY_SIMPLEX, scala, negro);
+	putText(Rules,  "3) Las piezas solo pueden moverse", punto5, FONT_HERSHEY_SIMPLEX, scala, negro);
+		putText(Rules,"una vez por turno.", punto5a, FONT_HERSHEY_SIMPLEX, scala, negro);
+	Rect mune(140,345,100,30);
+	rectangle(Rules,mune,rojo,CV_FILLED);
+	putText(Rules,"Menu",Point(170,370), FONT_HERSHEY_SIMPLEX, 0.8, blanco);
+
 }
 
 void reglas(){
 
+	//Mat
+
 	namedWindow("Ventana");
-	Dibujarreglas(Ins);
+	Dibujarreglas(Rules);
 
 	while(true){
-		imshow("Ventana",Ins);
+		imshow("Ventana",Rules);
 			if((waitKey(1)& 0XFF)==27)
 			break;
 				if (cerrar)
@@ -1647,7 +1658,9 @@ void Oldmouse(int event, int x, int y, int, void*){
 
 				}
 				else if (x>=75 && x< 314 && y>=335 && y <=395){
+					m=3;
 					reglas();
+					
 				}
 		}
 	}
@@ -1783,24 +1796,6 @@ void inic()
 	//return 0;
 }
 
-/*void Menu(){
-	Mat Menu (400,400,CV_8UC3,Scalar(153,255,153));
-	namedWindow("Ventana");
-	int option=0;
-	dibujarBmenu(Menu);
-	setMouseCallback("Ventana", onMouse);
-
-
-	while (m==1)
-	{
-		imshow("Ventana", Menu);
-		if (waitKey(5) == 27)
-			break;
-		if (cerrar)
-			break;
-
-	}
-}*/
 void Top10(){
 	namedWindow("Ventana");
 
@@ -1816,18 +1811,3 @@ void Top10(){
 			break;
 	}
 }
-/*
-void datos(){
-
-	namedWindow("Ventana");
-	Dibujarinscrip(Ins);
-
-	while(true){
-		imshow("Ventana",Ins);
-			if((waitKey(1)& 0XFF)==27)
-			break;
-				if (cerrar)
-			break;
-	}
-}
-*/
